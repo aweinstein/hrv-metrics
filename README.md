@@ -1,1 +1,33 @@
-# hrv-metrics
+# HRV-paper
+
+This is the repository for the paper "Effects of Detection Algorithms of the Electrocardiograms R wave in Heart Rate Variability Metrics" (tentative title). 
+
+This repository contains all the corresponding code. It also includes other issues associated with the paper.ng code here.It also contains other issues associated with the paper.
+
+
+## Overleaf 
+
+https://www.overleaf.com/project/65fd77e0eff57b3a35134f8f
+
+## Databases
+
+Howell, L. and Porr, B. (2018) High precision ECG Database with annotated R peaks, recorded and filmed under realistic conditions. [Data Collection] (DOI:10.5525/gla.researchdata.716)
+
+Also available through the python api in: https://github.com/berndporr/ECG-GUDB
+
+## Scripts
+
+1. rr_peak_detection.py - Detects QRS peaks for the dataset.
+2. compute_hrv.py - Computes HRV metrics
+3. interval_tachogram.py - plots histogram of RR intervals using np.diff
+4. export_HRV.py - exports a subset of HRV metrics. It also shows which rows in the dataframe contains null values.
+
+## Notes
+
+When computing the results. Remember to delete the files already in the results folder otherwise the difference between annotated data in Einhoven and CS datasets could produce errors in the results.
+
+## References
+
+This Google Drive directory contains some relevant papers:
+
+https://drive.google.com/drive/folders/1_w_WF6XVycLRbn8CZLLKUAgH0dZ8_93I?usp=drive_link
