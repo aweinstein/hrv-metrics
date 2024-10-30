@@ -21,7 +21,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 PLOT = False
 SAVE_PATH = 'results/rr_detection'
 if not os.path.exists(SAVE_PATH):
-    os.mkdir(SAVE_PATH)
+    os.makedirs(SAVE_PATH)
 
 NSUBJECTS = 24
 FS = 250

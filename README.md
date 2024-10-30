@@ -20,7 +20,7 @@ Also available through the python api in: https://github.com/berndporr/ECG-GUDB
 1. rr_peak_detection.py - Detects QRS peaks for the dataset.
 2. compute_hrv.py - Computes HRV metrics
 3. interval_tachogram.py - plots histogram of RR intervals using np.diff
-4. export_HRV.py - exports a subset of HRV metrics. It also shows which rows in the dataframe contains null values.
+4. export_HRV.py - exports a valid subset of HRV metrics. It also shows which rows in the dataframe contains null values.
 
 ## Notes
 
