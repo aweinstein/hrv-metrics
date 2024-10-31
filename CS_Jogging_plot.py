@@ -5,8 +5,6 @@ import os
 from ecg_gudb_database import GUDb
 import matplotlib.pyplot as plt
 from ecgdetectors import Detectors
-from jf_ecg_benchmark.jf_analysis import evaluate as jf
-from jf_ecg_benchmark.sensitivity_analysis import evaluate as sens
 from tqdm import tqdm
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
