@@ -18,7 +18,7 @@ Also available through the python api in: https://github.com/berndporr/ECG-GUDB
 ## Scripts
 
 1. rr_peak_detection.py - Detects QRS peaks for the dataset. One of the parameters of the script is which setup to use. Options are 'Chest strap' or 'Einhoven'
-2. compute_hrv.py - Computes HRV metrics
+2. compute_hrv.py - Computes HRV metrics. It will use the files in the results folder. The script has a parameter setup, with options: 'Chest strap' or 'Einhoven'. IMPORTANT: You need to make sure the results in the results folder are from the setup option in this script, otherwise, they will be mislabeled during this step.
 3. interval_tachogram.py - plots histogram of RR intervals using np.diff
 4. export_HRV.py - exports a valid subset of HRV metrics. It also shows which rows in the dataframe contains null values.
 5. CS_Jogging_plot.py - Prints which subjects-experiment doesn't have annotations. Plots a sample of the Einhoven and the Chest Strap conditions to demonstrate the difference of noise level between the setups.
