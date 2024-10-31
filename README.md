@@ -26,6 +26,11 @@ Also available through the python api in: https://github.com/berndporr/ECG-GUDB
 
 When computing the results. Remember to delete the files already in the results folder otherwise the difference between annotated data in Einhoven and CS datasets could produce errors in the results.
 
+## Requirements
+
+There is a txt file containing the modules needed to run the scripts. Use `pip install -r requirements.txt` in your new enviorment.
+The jf_ecg_benchmark needs to be cloned from the following repository: https://github.com/julioRodino/JF-ECG-Benchmark.git and check out into the 'use_as_package' branch.
+
 ## References
 
 This Google Drive directory contains some relevant papers:
