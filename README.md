@@ -21,6 +21,8 @@ Also available through the python api in: https://github.com/berndporr/ECG-GUDB
 2. compute_hrv.py - Computes HRV metrics
 3. interval_tachogram.py - plots histogram of RR intervals using np.diff
 4. export_HRV.py - exports a valid subset of HRV metrics. It also shows which rows in the dataframe contains null values.
+5. CS_Jogging_plot.py - Prints which subjects-experiment doesn't have annotations. Plots a sample of the Einhoven and the Chest Strap conditions to demonstrate the difference of noise level between the setups.
+6. engzee_plots.py - Plots a sample of the Chest Strap setup when the Engzee method fails.
 
 ## Notes
 
