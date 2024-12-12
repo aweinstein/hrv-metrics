@@ -100,4 +100,4 @@ if __name__ == '__main__':
 
     plt.show()
 
-    save_figs_as_pdf(figs, 'ccc_barplot.pdf')
+    save_figs_as_pdf(figs, 'figures/ccc_barplot.pdf')

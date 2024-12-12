@@ -107,14 +107,14 @@ metrics = ['HRV_MeanNN', 'HRV_SDNN', 'HRV_RMSSD', 'HRV_SDSD', 'HRV_CVSD',
            'HRV_SD1SD2', 'HRV_SampEn', 'HRV_TP']
 experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
 
-def plot_all_regressions():
+if __name__ == '__main__':
     plt.close('all')
 
     df = pd.read_csv('datahrv/chest_strap_setup_subset_HRV_notEngzee.csv')
     df = df.drop(columns=['index'] + ['HRV_SDRMSSD.1']) # data cleaning
     df_ccc = pd.read_csv('datahrv/ccc_chest_strap_df.csv')
-    plot_all_regressions(df, df_ccc, 'regressions_chest_strap.pdf')
+    plot_all_regressions(df, df_ccc, 'figures/regressions_chest_strap.pdf')
 
     df = pd.read_csv('datahrv/einhoven_subset_HRV_not_jogging_with_Engzee.csv')
     df_ccc = pd.read_csv('datahrv/ccc_einhoven_df.csv')
-    plot_all_regressions(df, df_ccc, 'regressions_einhoven.pdf', skip_exp=['jogging'])
+    plot_all_regressions(df, df_ccc, 'figures/regressions_einhoven.pdf', skip_exp=['jogging'])
