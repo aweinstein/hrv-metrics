@@ -83,7 +83,7 @@ def plot_regressions(df, df_ccc, metric, skip_exp=[]):
     return fig
 
 
-def plot_all_regressions(df, df_ccc, fn, skip_exp=[]):
+def plot_setup_regressions(df, df_ccc, fn, skip_exp=[]):
     figs = []
     for metric in metrics:
         print('Plotting ', metric)
@@ -107,14 +107,18 @@ metrics = ['HRV_MeanNN', 'HRV_SDNN', 'HRV_RMSSD', 'HRV_SDSD', 'HRV_CVSD',
            'HRV_SD1SD2', 'HRV_SampEn', 'HRV_TP']
 experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
 
-if __name__ == '__main__':
+
+def plot_all_regressions():
     plt.close('all')
 
     df = pd.read_csv('datahrv/chest_strap_setup_subset_HRV_notEngzee.csv')
     df = df.drop(columns=['index'] + ['HRV_SDRMSSD.1']) # data cleaning
     df_ccc = pd.read_csv('datahrv/ccc_chest_strap_df.csv')
-    plot_all_regressions(df, df_ccc, 'figures/regressions_chest_strap.pdf')
+    plot_setup_regressions(df, df_ccc, 'figures/regressions_chest_strap.pdf')
 
     df = pd.read_csv('datahrv/einhoven_subset_HRV_not_jogging_with_Engzee.csv')
     df_ccc = pd.read_csv('datahrv/ccc_einhoven_df.csv')
-    plot_all_regressions(df, df_ccc, 'figures/regressions_einhoven.pdf', skip_exp=['jogging'])
+    plot_setup_regressions(df, df_ccc, 'figures/regressions_einhoven.pdf', skip_exp=['jogging'])
+
+if __name__ == '__main__':
+    plot_all_regressions()
