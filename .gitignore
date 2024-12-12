@@ -5,3 +5,6 @@ __pycache__
 *.npy
 *.txt
 *.zip
+R/.RData
+R/.Rhistory
+R/.Rproj.user
