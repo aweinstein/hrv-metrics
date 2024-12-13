@@ -51,14 +51,14 @@ def make_barplot(fn, methods, experiments):
         ax.set_ylim(0, 1.1)
         ax.set_title(metric.split('_')[1], y=0.89)
 
-        # See https://pmc.ncbi.nlm.nih.gov/articles/PMC6107969/
-        # https://thedatascientist.com/concordance-correlation-coefficient/
-        ax.axhline(0.95, color='red', linestyle=':')
-        ax.axhline(0.9, color='red', linestyle=':')
-        ax.axhline(0.8, color='green', linestyle=':')
-        ax.axhline(0.6, color='green', linestyle=':')
-        ax.axhline(0.3, color='green', linestyle=':')
-        ax.axhline(0.2, color='green', linestyle=':')
+        # See https://pmc.ncbi.nlm.nih.gov/articles/PMC6107969/, which recommend
+        # the values from
+        # Chan, Y. H. "Biostatistics 104: correlational analysis." Singapore Med
+        # J 44.12 (2003): 614-619.
+        ax.axhline(0.8, color='black', linestyle=':', alpha=0.5)
+        ax.axhline(0.5, color='black', linestyle=':', alpha=0.5)
+        ax.axhline(0.3, color='black', linestyle=':', alpha=0.5)
+
 
     for i in range(rows):
         for j in range(cols):
