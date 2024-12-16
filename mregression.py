@@ -57,8 +57,9 @@ def plot_regression(df, df_ccc, metric, method, ax=None, skip_exp=[]):
 
     x = [dfr['annotated'].min(), dfr['annotated'].max()]
     ax.plot(x, x, linestyle=':')
-    ax.set_title(method, y=0.93)
-    ax.legend(loc='lower right')
+    # ax.set_title(method, y=0.93)
+    ax.set_title(method)
+    ax.legend(loc='best')
     return ax
 
 
@@ -119,6 +120,7 @@ def plot_all_regressions():
     df = pd.read_csv('datahrv/einhoven_subset_HRV_not_jogging_with_Engzee.csv')
     df_ccc = pd.read_csv('datahrv/ccc_einhoven_df.csv')
     plot_setup_regressions(df, df_ccc, 'figures/regressions_einhoven.pdf', skip_exp=['jogging'])
+
 
 if __name__ == '__main__':
     plot_all_regressions()
