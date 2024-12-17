@@ -13,7 +13,7 @@ def save_figs_as_pdf(figs, fn):
         pdf.close()
     else:
         figs.savefig(fn, format='pdf')
-    print('File %s created' % fn)
+    print('Figure saved as', fn)
 
 
 def get_data_method(df, method, metric):
@@ -96,19 +96,6 @@ def plot_setup_regressions(df, df_ccc, fn, skip_exp=[]):
     save_figs_as_pdf(figs, fn)
 
 
-pd.options.mode.copy_on_write = True
-
-
-methods = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform', 'Christov',
-           'Hamilton', 'Pan_Tompkins', 'WQRS']
-metrics = ['HRV_MeanNN', 'HRV_SDNN', 'HRV_RMSSD', 'HRV_SDSD', 'HRV_CVSD',
-           'HRV_CVNN', 'HRV_TINN', 'HRV_HTI', 'HRV_SDRMSSD', 'HRV_pNN20',
-           'HRV_pNN50', 'HRV_IQRNN', 'HRV_LF', 'HRV_HF', 'HRV_LFHF',
-           'HRV_LFn', 'HRV_HFn', 'HRV_LnHF', 'HRV_SD1', 'HRV_SD2',
-           'HRV_SD1SD2', 'HRV_SampEn', 'HRV_TP']
-experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
-
-
 def plot_all_regressions():
     plt.close('all')
 
@@ -122,5 +109,41 @@ def plot_all_regressions():
     plot_setup_regressions(df, df_ccc, 'figures/regressions_einhoven.pdf', skip_exp=['jogging'])
 
 
+def plot_paper_regression():
+    plt.close('all')
+    df = pd.read_csv('datahrv/chest_strap_setup_subset_HRV_notEngzee.csv')
+    df = df.drop(columns=['index'] + ['HRV_SDRMSSD.1']) # data cleaning
+    df_ccc = pd.read_csv('datahrv/ccc_chest_strap_df.csv')
+    rows, cols = 3, 3
+    _, axs = plt.subplots(rows, cols, layout='constrained', figsize=(12, 12))
+    metrics = ['HRV_MeanNN', 'HRV_TINN', 'HRV_LFHF']
+    # Que metodos mostramos?
+    methods = ['Matched_filter', 'Wavelet_transform', 'Christov']
+
+    for i, metric in enumerate(metrics):
+        for method, ax in zip(methods, axs[i,:].flat): # Hay que pasar solo una fila(?) de axs
+            plot_regression(df, df_ccc, metric, method, ax)
+        for j in range(cols):
+            axs[i,j].set_ylabel(metric.split('_')[1])
+            axs[i,j].set_xlabel('annotated ' + metric.split('_')[1])
+
+    fn ='figures/regression.pdf'
+    plt.savefig(fn)
+    print('Figure saved as', fn)
+
+
+
+pd.options.mode.copy_on_write = True
+methods = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform', 'Christov',
+           'Hamilton', 'Pan_Tompkins', 'WQRS']
+metrics = ['HRV_MeanNN', 'HRV_SDNN', 'HRV_RMSSD', 'HRV_SDSD', 'HRV_CVSD',
+           'HRV_CVNN', 'HRV_TINN', 'HRV_HTI', 'HRV_SDRMSSD', 'HRV_pNN20',
+           'HRV_pNN50', 'HRV_IQRNN', 'HRV_LF', 'HRV_HF', 'HRV_LFHF',
+           'HRV_LFn', 'HRV_HFn', 'HRV_LnHF', 'HRV_SD1', 'HRV_SD2',
+           'HRV_SD1SD2', 'HRV_SampEn', 'HRV_TP']
+experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
+
+
 if __name__ == '__main__':
-    plot_all_regressions()
+    # plot_all_regressions()
+    plot_paper_regression()
