@@ -41,7 +41,7 @@ def get_data_method(df, method, metric):
     return dfr
 
 
-def plot_regression(df, df_ccc, metric, method, ax=None, skip_exp=[]):
+def plot_regression(df, df_ccc, metric, method, ax=None, skip_exp=[], lfontsize='medium'):
     if ax is None:
         fig, ax = plt.subplots(layout='constrained')
     dfr = get_data_method(df, method, metric)
@@ -57,9 +57,8 @@ def plot_regression(df, df_ccc, metric, method, ax=None, skip_exp=[]):
 
     x = [dfr['annotated'].min(), dfr['annotated'].max()]
     ax.plot(x, x, linestyle=':')
-    # ax.set_title(method, y=0.93)
     ax.set_title(method)
-    ax.legend(loc='best')
+    ax.legend(loc='best', fontsize=lfontsize)
     return ax
 
 
@@ -114,15 +113,15 @@ def plot_paper_regression():
     df = pd.read_csv('datahrv/chest_strap_setup_subset_HRV_notEngzee.csv')
     df = df.drop(columns=['index'] + ['HRV_SDRMSSD.1']) # data cleaning
     df_ccc = pd.read_csv('datahrv/ccc_chest_strap_df.csv')
-    rows, cols = 3, 3
-    _, axs = plt.subplots(rows, cols, layout='constrained', figsize=(12, 12))
+    rows, cols = 3, 7
+    _, axs = plt.subplots(rows, cols, layout='constrained', figsize=(24, 10))
     metrics = ['HRV_MeanNN', 'HRV_TINN', 'HRV_LFHF']
     # Que metodos mostramos?
-    methods = ['Matched_filter', 'Wavelet_transform', 'Christov']
+    # methods = ['Matched_filter', 'Wavelet_transform', 'Christov']
 
     for i, metric in enumerate(metrics):
         for method, ax in zip(methods, axs[i,:].flat): # Hay que pasar solo una fila(?) de axs
-            plot_regression(df, df_ccc, metric, method, ax)
+            plot_regression(df, df_ccc, metric, method, ax, lfontsize='xx-small')
         for j in range(cols):
             axs[i,j].set_ylabel(metric.split('_')[1])
             axs[i,j].set_xlabel('annotated ' + metric.split('_')[1])
