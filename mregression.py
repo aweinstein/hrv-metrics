@@ -53,7 +53,7 @@ def plot_regression(df, df_ccc, metric, method, ax=None, skip_exp=[], lfontsize=
         data = dfr[dfr['experiment']==experiment]
         label = f'{experiment} ({ccc:.2f})'
         sns.regplot(data=data, x='annotated', y=metric, ci=None, ax=ax,
-                    label=label)
+                    label=label, scatter_kws={"s": 10})
 
     x = [dfr['annotated'].min(), dfr['annotated'].max()]
     ax.plot(x, x, linestyle=':')
@@ -114,7 +114,7 @@ def plot_paper_regression():
     df = df.drop(columns=['index'] + ['HRV_SDRMSSD.1']) # data cleaning
     df_ccc = pd.read_csv('datahrv/ccc_chest_strap_df.csv')
     rows, cols = 3, 7
-    _, axs = plt.subplots(rows, cols, layout='constrained', figsize=(24, 10))
+    _, axs = plt.subplots(rows, cols, layout='constrained', figsize=(24, 8))
     metrics = ['HRV_MeanNN', 'HRV_TINN', 'HRV_LFHF']
     # Que metodos mostramos?
     # methods = ['Matched_filter', 'Wavelet_transform', 'Christov']
