@@ -108,7 +108,7 @@ def plot_all_regressions():
     plot_setup_regressions(df, df_ccc, 'figures/regressions_einhoven.pdf', skip_exp=['jogging'])
 
 
-def plot_paper_regression():
+def plot_paper_regression_one_fig():
     plt.close('all')
     df = pd.read_csv('datahrv/chest_strap_setup_subset_HRV_notEngzee.csv')
     df = df.drop(columns=['index'] + ['HRV_SDRMSSD.1']) # data cleaning
@@ -130,6 +130,26 @@ def plot_paper_regression():
     plt.savefig(fn)
     print('Figure saved as', fn)
 
+
+def plot_paper_regression():
+    plt.close('all')
+    df = pd.read_csv('datahrv/chest_strap_setup_subset_HRV_notEngzee.csv')
+    df = df.drop(columns=['index'] + ['HRV_SDRMSSD.1']) # data cleaning
+    df_ccc = pd.read_csv('datahrv/ccc_chest_strap_df.csv')
+    rows, cols = 2, 4
+    metrics = ['HRV_MeanNN', 'HRV_TINN', 'HRV_LFHF']
+
+    for metric in metrics:
+        _, axs = plt.subplots(rows, cols, layout='constrained', figsize=(17, 8))
+        for method, ax in zip(methods, axs.flat):
+            plot_regression(df, df_ccc, metric, method, ax, lfontsize='small')
+            ax.set_ylabel(metric.split('_')[1])
+            ax.set_xlabel('annotated ' + metric.split('_')[1])
+        axs[-1,-1].axis('off')
+
+        fn =f'figures/regression_{metric}.pdf'
+        plt.savefig(fn)
+        print('Figure saved as', fn)
 
 
 pd.options.mode.copy_on_write = True
