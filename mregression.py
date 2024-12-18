@@ -51,7 +51,7 @@ def plot_regression(df, df_ccc, metric, method, ax=None, skip_exp=[], lfontsize=
         ccc = df_ccc.query('experiment == @experiment')['ccc'].iloc[0]
         ccc =  (int(ccc*100) % 100) / 100 # Get two decimal point without rounding
         data = dfr[dfr['experiment']==experiment]
-        label = f'{experiment} (CCC={ccc:.2f})'
+        label = f'{experiment} ({ccc:.2f})'
         sns.regplot(data=data, x='annotated', y=metric, ci=None, ax=ax,
                     label=label)
 
@@ -120,7 +120,7 @@ def plot_paper_regression():
     # methods = ['Matched_filter', 'Wavelet_transform', 'Christov']
 
     for i, metric in enumerate(metrics):
-        for method, ax in zip(methods, axs[i,:].flat): # Hay que pasar solo una fila(?) de axs
+        for method, ax in zip(methods, axs[i,:].flat):
             plot_regression(df, df_ccc, metric, method, ax, lfontsize='xx-small')
         for j in range(cols):
             axs[i,j].set_ylabel(metric.split('_')[1])
