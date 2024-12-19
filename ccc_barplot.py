@@ -114,16 +114,15 @@ def make_paper_plot():
     fn = 'datahrv/ccc_chest_strap_df.csv'
     df = pd.read_csv(fn)
     plt.close('all')
-    fig, axs = plt.subplots(4, 1, layout='constrained', figsize=(5, 7))
+    _, axs = plt.subplots(4, 1, layout='constrained', figsize=(5.38, 7))
     methods = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform', 'Christov',
                'Hamilton', 'Pan_Tompkins', 'WQRS']
     experiments = ['sitting', 'maths', 'walking', 'handbk', 'jogging']
 
     metrics = ['HRV_MeanNN', 'HRV_TINN', 'HRV_LFHF']
-    x, width = make_barplot(df, methods, experiments, axs, metrics, ytitle=0.95)
+    _, _ = make_barplot(df, methods, experiments, axs, metrics, ytitle=1)
     for ax in axs:
         ax.set_ylabel('CCC')
-        # ax.set_ylim(ymax=1.2)
 
     legend_panel = axs[-1]
     legend_panel.axis('off')
@@ -138,4 +137,4 @@ def make_paper_plot():
 
 if __name__ == '__main__':
     make_paper_plot() # Figure with three metrics for chest strap.
-    make_all_plots()  # Figure with all metrics and the two setups.
+    # make_all_plots()  # Figure with all metrics and the two setups.
