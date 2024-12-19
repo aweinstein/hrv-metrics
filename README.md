@@ -17,12 +17,23 @@ Also available through the python api in: https://github.com/berndporr/ECG-GUDB
 
 ## Scripts
 
-1. rr_peak_detection.py - Detects QRS peaks for the dataset. One of the parameters of the script is which setup to use. Options are 'Chest strap' or 'Einhoven'
-2. compute_hrv.py - Computes HRV metrics. It will use the files in the results folder. The script has a parameter setup, with options: 'Chest strap' or 'Einhoven'. IMPORTANT: You need to make sure the results in the results folder are from the setup option in this script, otherwise, they will be mislabeled during this step.
-3. interval_tachogram.py - plots histogram of RR intervals using np.diff
-4. export_HRV.py - exports a valid subset of HRV metrics. It also shows which rows in the dataframe contains null values.
-5. CS_Jogging_plot.py - Prints which subjects-experiment doesn't have annotations. Plots a sample of the Einhoven and the Chest Strap conditions to demonstrate the difference of noise level between the setups.
-6. engzee_plots.py - Plots a sample of the Chest Strap setup when the Engzee method fails.
+- ```bland_altman_plots.py```
+- ```ccc_barplot.py```: Makes CCC plots.
+- ```check_annotation.py```
+- ```check_nonAnnotated.py```
+- ```compute_hrv.py```:  Computes HRV metrics. It will use the files in the results folder. The script has a parameter setup, with options: 'Chest strap' or 'Einhoven'. IMPORTANT: You need to make sure the results in the results folder are from the setup option in this script, otherwise, they will be mislabeled during this step.
+- ```cs_jogging.py```: Prints which subjects-experiment doesn't have annotations. Plots a sample of the Einhoven and the Chest Strap conditions to demonstrate the difference of noise level between the setups.
+- ```engzee_plots.py```: Plots a sample of the Chest Strap setup when the Engzee method fails.
+- ```export_HRV.py```: Exports a valid subset of HRV metrics. It also shows which rows in the dataframe contains null values.
+- ```interval_tachogram.py```: Plots histogram of RR intervals using np.diff
+- ```load_database.py```
+- ```make_table.py```
+- ```mregression.py```: Makes multiple regression plots.
+-``` multipage_pdf.py```
+- ```neurokit_vs_Porr.py```
+- ```rr_peak_detection.py```:  Detects QRS peaks for the dataset. One of the parameters of the script is which setup to use. Options are 'Chest strap' or 'Einhoven'
+- ```test_peak_detection.py```
+- ```utils.py```
 
 ## Notes
 
