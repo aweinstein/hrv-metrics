@@ -14,6 +14,7 @@ Metrics = ['HRV_MeanNN', 'HRV_SDNN', 'HRV_RMSSD', 'HRV_SDSD', 'HRV_CVSD',
            'HRV_LFn', 'HRV_HFn', 'HRV_LnHF', 'HRV_SD1', 'HRV_SD2',
            'HRV_SD1SD2', 'HRV_SampEn', 'HRV_TP']
 
+
 # TODO: Import from multipage_pdf
 from matplotlib.backends.backend_pdf import PdfPages
 def save_figs_as_pdf(figs, fn):
@@ -109,12 +110,12 @@ def make_all_plots():
     save_figs_as_pdf(figs, 'figures/ccc_barplots.pdf')
 
 
-
 def make_paper_plot():
     fn = 'datahrv/ccc_chest_strap_df.csv'
     df = pd.read_csv(fn)
     plt.close('all')
-    _, axs = plt.subplots(4, 1, layout='constrained', figsize=(5.38, 7))
+    _, axs = plt.subplots(4, 1, layout='constrained', figsize=(5.38, 7),
+                          height_ratios= [1, 1, 1, 0.5])
     methods = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform', 'Christov',
                'Hamilton', 'Pan_Tompkins', 'WQRS']
     experiments = ['sitting', 'maths', 'walking', 'handbk', 'jogging']
