@@ -15,7 +15,6 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 
 ## Scripts
 
-- ```bland_altman_plots.py```
 - ```ccc_barplot.py```: Makes CCC plots.
 - ```check_annotation.py```
 - ```check_nonAnnotated.py```
