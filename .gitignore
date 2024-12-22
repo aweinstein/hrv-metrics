@@ -4,6 +4,7 @@ __pycache__
 *.csv
 *.npy
 *.zip
+results/info.txt
 R/.RData
 R/.Rhistory
 R/.Rproj.user

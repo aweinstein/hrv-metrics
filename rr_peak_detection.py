@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from tqdm import tqdm
 from ecgdetectors import Detectors
-from jf_ecg_benchmark.jf_analysis import evaluate as jf
-from jf_ecg_benchmark.sensitivity_analysis import evaluate as sens
+from jf.jf_analysis import evaluate as jf
+from jf.sensitivity_analysis import evaluate as sens
 from multipage_pdf import save_figs_as_pdf
 
 
@@ -127,8 +127,7 @@ for i, s in enumerate(tqdm(subjects)):
                                W)
                 sensitivity.append(results[0])
 
-                JF.append(jf(
-                    detected_peaks, annotated_peaks, FS)['jf'])
+                JF.append(jf(detected_peaks, annotated_peaks, FS, None)['jf'])
 
             # Plot 5s if wanted
             if PLOT:
