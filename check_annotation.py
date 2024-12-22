@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from tqdm import tqdm
 from ecgdetectors import Detectors
-from jf_ecg_benchmark.jf_analysis import evaluate as jf
-from jf_ecg_benchmark.sensitivity_analysis import evaluate as sens
-from multipage_pdf import save_figs_as_pdf
+from jf.jf_analysis import evaluate as jf
+from jf.sensitivity_analysis import evaluate as sens
+from utils import save_figs_as_pdf
 
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))

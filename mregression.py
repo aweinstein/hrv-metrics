@@ -2,18 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-# TODO: Import from multipage_pdf
-from matplotlib.backends.backend_pdf import PdfPages
-def save_figs_as_pdf(figs, fn):
-    if isinstance(figs, list):
-        pdf = PdfPages(fn)
-        for f in figs:
-            pdf.savefig(f)
-        pdf.close()
-    else:
-        figs.savefig(fn, format='pdf')
-    print('Figure saved as', fn)
+from utils import save_figs_as_pdf
 
 
 def get_data_method(df, method, metric):

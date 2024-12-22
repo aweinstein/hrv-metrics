@@ -4,11 +4,23 @@ Utilities to detect and calculate HRV measures.
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.backends.backend_pdf import PdfPages
+
+
+def save_figs_as_pdf(figs, fn):
+    if isinstance(figs, list):
+        pdf = PdfPages(fn)
+        for f in figs:
+            pdf.savefig(f)
+        pdf.close()
+    else:
+        figs.savefig(fn, format='pdf')
+    print('File saved as', fn)
 
 
 def confusion_matrix(annotated_peaks,
                      detected_peaks, tolerance_window):
-    """"
+    """
     Computes performance measures for peak detection.
 
     Parameters
@@ -20,7 +32,7 @@ def confusion_matrix(annotated_peaks,
 
     References
     ----------
-    This function is based on what is described in: 
+    This function is based on what is described in:
     """
 
     tp = np.sum(
@@ -39,7 +51,7 @@ def confusion_matrix(annotated_peaks,
 
 
 def read_info(file):
-    """"
+    """
     Returns dictionary with information about the QRS detection analysis.
 
     Parameters
@@ -57,7 +69,7 @@ def read_info(file):
 
 
 def plot_hrv(data, x, y, hue):
-    """"
+    """
     Plot HRV metrics
     """
     fig, ax = plt.subplots(figsize=(7, 4))

@@ -7,25 +7,14 @@ https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from utils import save_figs_as_pdf
+
 
 Metrics = ['HRV_MeanNN', 'HRV_SDNN', 'HRV_RMSSD', 'HRV_SDSD', 'HRV_CVSD',
            'HRV_CVNN', 'HRV_TINN', 'HRV_HTI', 'HRV_SDRMSSD', 'HRV_pNN20',
            'HRV_pNN50', 'HRV_IQRNN', 'HRV_LF', 'HRV_HF', 'HRV_LFHF',
            'HRV_LFn', 'HRV_HFn', 'HRV_LnHF', 'HRV_SD1', 'HRV_SD2',
            'HRV_SD1SD2', 'HRV_SampEn', 'HRV_TP']
-
-
-# TODO: Import from multipage_pdf
-from matplotlib.backends.backend_pdf import PdfPages
-def save_figs_as_pdf(figs, fn):
-    if isinstance(figs, list):
-        pdf = PdfPages(fn)
-        for f in figs:
-            pdf.savefig(f)
-        pdf.close()
-    else:
-        figs.savefig(fn, format='pdf')
-    print('Figure saved as', fn)
 
 
 def make_barplot(df, methods, experiments, axs, metrics=None, ytitle=0.89):

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import os
 import pandas as pd
 from utils import read_info
-from multipage_pdf import save_figs_as_pdf
+from utils import save_figs_as_pdf
 from tqdm import tqdm
 
 

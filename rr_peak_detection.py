@@ -13,7 +13,7 @@ from tqdm import tqdm
 from ecgdetectors import Detectors
 from jf.jf_analysis import evaluate as jf
 from jf.sensitivity_analysis import evaluate as sens
-from multipage_pdf import save_figs_as_pdf
+from utils import save_figs_as_pdf
 
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
