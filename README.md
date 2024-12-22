@@ -26,7 +26,7 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 - ```load_database.py```
 - ```make_table.py```
 - ```mregression.py```: Makes multiple regression plots.
-- ``` multipage_pdf.py```
+- ```multipage_pdf.py```
 - ```neurokit_vs_Porr.py```
 - ```rr_peak_detection.py```:  Detects QRS peaks for the dataset. One of the parameters of the script is which setup to use. Options are 'Chest strap' or 'Einhoven'
 - ```test_peak_detection.py```
@@ -38,6 +38,5 @@ When computing the results. Remember to delete the files already in the results 
 
 ## Requirements
 
-There is a text file containing the modules needed to run the scripts. Use `pip install -r requirements.txt` in your new enviorment.
-The jf_ecg_benchmark needs to be cloned from the following repository: https://github.com/julioRodino/JF-ECG-Benchmark.git and check out into the 'use_as_package' branch.
+You can install the dependencies with `pip install -r requirements.txt`. This code also depends on the code from the [jf_ecg_benchmark repository](https://github.com/berndporr/JF-ECG-Benchmark). Since, at the moment, this code can not be installed using `pip`, we copy it to the repo.
 
