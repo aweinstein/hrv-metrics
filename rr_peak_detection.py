@@ -53,8 +53,8 @@ methods_name = []
 experiments_name = []
 subject_idx = []
 
-for i, s in enumerate(tqdm(subjects)):
-    for ii, experiment in enumerate(experiments):
+for i, s in enumerate(tqdm(subjects, desc='Subject')):
+    for ii, experiment in enumerate(tqdm(experiments, desc='Condition')):
         ecg_class = GUDb(s, experiment)
 
         # Anotated R-peaks and data
@@ -69,9 +69,8 @@ for i, s in enumerate(tqdm(subjects)):
             data = ecg_class.cs_V2_V1
 
         if not anno_exists:
-
-            print(f'Skipping subject {s}\n' +
-                  f'Experiment: {experiment}')
+            tqdm.write(f'No annotation for subject {s}, condition {experiment}. '
+                       'Skipping it.')
             continue
 
         time = ecg_class.t
@@ -89,7 +88,7 @@ for i, s in enumerate(tqdm(subjects)):
         np.save(ann_save_file, annotated_peaks)
 
         figs = []
-        for iii, method in enumerate(methods):
+        for iii, method in enumerate(tqdm(methods, desc='Method', leave=False)):
 
             # Find peaks
             detected_peaks = np.array(method[1](data))
