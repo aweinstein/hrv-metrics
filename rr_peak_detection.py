@@ -15,12 +15,12 @@ from jf.jf_analysis import evaluate as jf
 from jf.sensitivity_analysis import evaluate as sens
 
 
-SAVE_PATH = Path('results/rr_detection')
-n_subjects = 24
-FS = 250
-DETECTOR = 'chest_strap'
+save_path = Path('results/rr_detection')
+n_subjects = 25
+fs = 250
+setup = 'chest_strap'
 experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
-subjects = np.arange(0, n_subjects + 1)
+subjects = np.arange(0, n_subjects)
 
 
 methods_names = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
@@ -28,7 +28,7 @@ methods_names = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
                  'WQRS']
 
 # %% Initialize Porr detectors
-detectors = Detectors(FS)
+detectors = Detectors(fs)
 methods = detectors.get_detector_list()
 
 # Allocate arrays that later compose the DF
@@ -43,12 +43,12 @@ for s in tqdm(subjects, desc='Subject'):
         ecg_class = GUDb(s, experiment)
 
         # Anotated R-peaks and data
-        if DETECTOR == 'Einhoven':
+        if setup == 'Einhoven':
             anno_exists = ecg_class.anno_cables_exists
             annotated_peaks = ecg_class.anno_cables
             data = ecg_class.einthoven_II
 
-        elif DETECTOR == 'chest_strap':
+        elif setup == 'chest_strap':
             anno_exists = ecg_class.anno_cs_exists
             annotated_peaks = ecg_class.anno_cs
             data = ecg_class.cs_V2_V1
@@ -59,12 +59,12 @@ for s in tqdm(subjects, desc='Subject'):
             continue
 
         time = ecg_class.t
-        FS = ecg_class.fs
+        fs = ecg_class.fs
 
         # tolerance window in samples
-        W = int(FS / 10)
+        W = int(fs / 10)
 
-        fn = SAVE_PATH / f'{s:02d}_{DETECTOR}_{experiment}_annotated_peaks.npy'
+        fn = save_path / f'{s:02d}_{setup}_{experiment}_annotated_peaks.npy'
         np.save(fn, annotated_peaks)
 
         figs = []
@@ -73,8 +73,8 @@ for s in tqdm(subjects, desc='Subject'):
             # Find peaks
             detected_peaks = np.array(method[1](data))
 
-            fn = f'{s:02d}_{DETECTOR}_{experiment}_{methods_names[i]}_peaks.npy'
-            fn = SAVE_PATH / fn
+            fn = f'{s:02d}_{setup}_{experiment}_{methods_names[i]}_peaks.npy'
+            fn = save_path / fn
 
             # Save detected peaks
             np.save(fn, detected_peaks)
@@ -89,7 +89,7 @@ for s in tqdm(subjects, desc='Subject'):
                 results = sens(detected_peaks, annotated_peaks, W)
                 sensitivity.append(results[0])
 
-                JF.append(jf(detected_peaks, annotated_peaks, FS, None)['jf'])
+                JF.append(jf(detected_peaks, annotated_peaks, fs, None)['jf'])
 
 # Arrange into pandas array
 data_dict = {'sensitivity': np.array(sensitivity),
@@ -99,7 +99,7 @@ data_dict = {'sensitivity': np.array(sensitivity),
              'subject_idx': np.array(subject_idx)}
 data = pd.DataFrame.from_dict(data_dict)
 core_df = data.to_csv('results/core_df.csv')
-data.to_csv(SAVE_PATH / 'sensitivity_jf.csv')
+data.to_csv(save_path / 'sensitivity_jf.csv')
 
 # Sensitivity Plot
 plt.close('all')
@@ -113,7 +113,7 @@ plt.xlabel('Method')
 
 plt.tight_layout()
 
-fig.savefig(SAVE_PATH / 'sensitivity.pdf')
+fig.savefig(save_path / 'sensitivity.pdf')
 
 # %% JF Plot
 fig, ax = plt.subplots(figsize=(7, 4))
@@ -127,4 +127,4 @@ plt.xlabel('Method')
 
 plt.tight_layout()
 
-fig.savefig(SAVE_PATH / 'JF.pdf')
+fig.savefig(save_path / 'JF.pdf')
