@@ -6,6 +6,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.backends.backend_pdf import PdfPages
 
+n_subjects = 25
+subjects = np.arange(0, n_subjects)
+experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
+methods_names = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
+                 'Engzee', 'Christov', 'Hamilton', 'Pan_Tompkins',
+                 'WQRS']
 
 def save_figs_as_pdf(figs, fn):
     if isinstance(figs, list):
@@ -58,13 +64,11 @@ def read_info():
     ----------
     file -> string with the name of the info file.
     """
-    n_subjects = 25
-    info = {}
-    info['subject_list'] = [str(n) for n in range(n_subjects)]
-    info['experiments'] = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
-    info['methods_names'] = ['Elgendi_et_al', 'Matched_filter',
-                             'Wavelet_transform', 'Engzee', 'Christov',
-                             'Hamilton', 'Pan_Tompkins', 'WQRS']
+    info = {
+        'subject_list': [str(n) for n in range(n_subjects)],
+        'experiments': experiments,
+        'methods_names': methods_names}
+
     return info
 
 

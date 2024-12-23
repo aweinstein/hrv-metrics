@@ -13,19 +13,11 @@ from tqdm import tqdm
 from ecgdetectors import Detectors
 from jf.jf_analysis import evaluate as jf
 from jf.sensitivity_analysis import evaluate as sens
-
+from utils import subjects, experiments, methods_names
 
 save_path = Path('results/rr_detection')
-n_subjects = 25
 fs = 250
 setup = 'chest_strap'
-experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
-subjects = np.arange(0, n_subjects)
-
-
-methods_names = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
-                 'Engzee', 'Christov', 'Hamilton', 'Pan_Tompkins',
-                 'WQRS']
 
 # %% Initialize Porr detectors
 detectors = Detectors(fs)
