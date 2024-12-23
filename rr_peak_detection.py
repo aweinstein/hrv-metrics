@@ -53,8 +53,8 @@ methods_name = []
 experiments_name = []
 subject_idx = []
 
-for i, s in enumerate(tqdm(subjects, desc='Subject')):
-    for ii, experiment in enumerate(tqdm(experiments, desc='Condition')):
+for s in tqdm(subjects, desc='Subject'):
+    for experiment in tqdm(experiments, desc='Condition'):
         ecg_class = GUDb(s, experiment)
 
         # Anotated R-peaks and data
@@ -88,13 +88,13 @@ for i, s in enumerate(tqdm(subjects, desc='Subject')):
         np.save(ann_save_file, annotated_peaks)
 
         figs = []
-        for iii, method in enumerate(tqdm(methods, desc='Method', leave=False)):
+        for i, method in enumerate(tqdm(methods, desc='Method', leave=False)):
 
             # Find peaks
             detected_peaks = np.array(method[1](data))
 
             # Save detected peaks
-            det_save_path = f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[iii]}'
+            det_save_path = f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[i]}'
             det_save_file = f'{det_save_path}/detected_peaks.npy'
 
             # Make save directory
@@ -108,8 +108,8 @@ for i, s in enumerate(tqdm(subjects, desc='Subject')):
             if len(detected_peaks) > 10:
 
                 experiments_name.append(experiment)
-                methods_name.append(methods_names[iii])
-                subject_idx.append(i)
+                methods_name.append(methods_names[i])
+                subject_idx.append(s)
 
                 results = sens(detected_peaks, annotated_peaks, W)
                 sensitivity.append(results[0])
@@ -162,9 +162,9 @@ for i, s in enumerate(tqdm(subjects, desc='Subject')):
                 plt.tight_layout()
 
                 fig.savefig(
-                    f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[iii]}/5s.png')  # png
+                    f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[i]}/5s.png')  # png
                 fig.savefig(
-                    f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[iii]}/5s.pdf')  # pdf
+                    f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[i]}/5s.pdf')  # pdf
                 figs.append(fig)
                 # plt.close()
 
@@ -175,9 +175,9 @@ for i, s in enumerate(tqdm(subjects, desc='Subject')):
                 plt.xlabel('Time [s]')
                 plt.title(f'Subject: {s}\n Method: {method}')
                 fig2.savefig(
-                    f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[iii]}/histogram.png')  # png
+                    f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[i]}/histogram.png')  # png
                 fig2.savefig(
-                    f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[iii]}/histogram.pdf')  # pdf
+                    f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[i]}/histogram.pdf')  # pdf
 
             if PLOT:
                 save_figs_as_pdf(figs,
