@@ -131,5 +131,5 @@ def evaluate(det_posn, anno_R, fs, nSamples, trim=True):
     else:
         jf[key_f1] = False
         jf[key_jf] = False
-    print(jf)
+
     return jf
