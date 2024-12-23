@@ -3,7 +3,7 @@ Exploration for different methods to extract RR-interval times.
 """
 
 # %% Import libraries and ecg_class
-import os
+from pathlib import Path
 import seaborn as sns
 from ecg_gudb_database import GUDb
 import numpy as np
@@ -17,11 +17,11 @@ from utils import save_figs_as_pdf
 
 
 PLOT = False
-SAVE_PATH = 'results/rr_detection'
+SAVE_PATH = Path('results/rr_detection')
 
 NSUBJECTS = 24
 FS = 250
-DETECTOR = 'Chest strap'
+DETECTOR = 'chest_strap'
 experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
 subjects = np.arange(0, NSUBJECTS+1)
 
@@ -63,7 +63,7 @@ for s in tqdm(subjects, desc='Subject'):
             annotated_peaks = ecg_class.anno_cables
             data = ecg_class.einthoven_II
 
-        elif DETECTOR == 'Chest strap':
+        elif DETECTOR == 'chest_strap':
             anno_exists = ecg_class.anno_cs_exists
             annotated_peaks = ecg_class.anno_cs
             data = ecg_class.cs_V2_V1
@@ -79,13 +79,8 @@ for s in tqdm(subjects, desc='Subject'):
         # tolerance window in samples
         W = int(FS / 10)
 
-        ann_save_path = f'{SAVE_PATH}/s[{s}]/{experiment}/'
-        ann_save_file = f'{ann_save_path}/annotated_peaks.npy'
-
-        if not os.path.exists(ann_save_path):
-            os.makedirs(ann_save_path)
-
-        np.save(ann_save_file, annotated_peaks)
+        fn = SAVE_PATH / f'{s:02d}_{DETECTOR}_{experiment}_annotated_peaks.npy'
+        np.save(fn, annotated_peaks)
 
         figs = []
         for i, method in enumerate(tqdm(methods, desc='Method', leave=False)):
@@ -93,16 +88,11 @@ for s in tqdm(subjects, desc='Subject'):
             # Find peaks
             detected_peaks = np.array(method[1](data))
 
-            # Save detected peaks
-            det_save_path = f'{SAVE_PATH}/s[{s}]/{experiment}/{methods_names[i]}'
-            det_save_file = f'{det_save_path}/detected_peaks.npy'
-
-            # Make save directory
-            if not os.path.exists(det_save_path):
-                os.makedirs(det_save_path)
+            fn = f'{s:02d}_{DETECTOR}_{experiment}_{methods_names[i]}_peaks.npy'
+            fn = SAVE_PATH / fn
 
             # Save detected peaks
-            np.save(det_save_file, detected_peaks)
+            np.save(fn, detected_peaks)
 
             # Compute sensitivity
             if len(detected_peaks) > 10:
@@ -195,7 +185,7 @@ data = pd.DataFrame.from_dict(data_dict)
 
 core_df = data.to_csv('results/core_df.csv')
 
-data.to_csv(f'{SAVE_PATH}/sensitivity_jf.csv')
+data.to_csv(SAVE_PATH / 'sensitivity_jf.csv')
 
 # %% Sensitivity Plot
 
@@ -209,7 +199,7 @@ plt.xlabel('Method')
 
 plt.tight_layout()
 
-fig.savefig(f'{SAVE_PATH}/sensitivity.pdf')
+fig.savefig(SAVE_PATH / 'sensitivity.pdf')
 
 # %% JF Plot
 fig, ax = plt.subplots(figsize=(7, 4))
@@ -223,4 +213,4 @@ plt.xlabel('Method')
 
 plt.tight_layout()
 
-fig.savefig(f'{SAVE_PATH}/JF.pdf')
+fig.savefig(SAVE_PATH / 'JF.pdf')
