@@ -1,4 +1,4 @@
-""""
+"""
 Exploration for different methods to extract RR-interval times.
 """
 
@@ -16,12 +16,8 @@ from jf.sensitivity_analysis import evaluate as sens
 from utils import save_figs_as_pdf
 
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
 PLOT = False
 SAVE_PATH = 'results/rr_detection'
-if not os.path.exists(SAVE_PATH):
-    os.makedirs(SAVE_PATH)
 
 NSUBJECTS = 24
 FS = 250
@@ -29,11 +25,10 @@ DETECTOR = 'Chest strap'
 experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
 subjects = np.arange(0, NSUBJECTS+1)
 
-# %%
 
-methods_names = np.array(['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
-                          'Engzee', 'Christov', 'Hamilton', 'Pan_Tompkins',
-                          'WQRS'])
+methods_names = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
+                 'Engzee', 'Christov', 'Hamilton', 'Pan_Tompkins',
+                 'WQRS']
 
 # Write info file to save variables
 lines = [list(subjects.astype(str)), experiments,
@@ -58,13 +53,8 @@ methods_name = []
 experiments_name = []
 subject_idx = []
 
-# First, loop trough subjects
 for i, s in enumerate(tqdm(subjects)):
-
-    # Second, loop thorugh experiments
-    # Iterate through experiments
     for ii, experiment in enumerate(experiments):
-
         ecg_class = GUDb(s, experiment)
 
         # Anotated R-peaks and data
@@ -98,7 +88,6 @@ for i, s in enumerate(tqdm(subjects)):
 
         np.save(ann_save_file, annotated_peaks)
 
-        # Thirth, iterate through methods
         figs = []
         for iii, method in enumerate(methods):
 
@@ -123,8 +112,7 @@ for i, s in enumerate(tqdm(subjects)):
                 methods_name.append(methods_names[iii])
                 subject_idx.append(i)
 
-                results = sens(detected_peaks, annotated_peaks,
-                               W)
+                results = sens(detected_peaks, annotated_peaks, W)
                 sensitivity.append(results[0])
 
                 JF.append(jf(detected_peaks, annotated_peaks, FS, None)['jf'])
