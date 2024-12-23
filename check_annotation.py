@@ -31,18 +31,6 @@ methods_names = np.array(['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform'
                           'Engzee', 'Christov', 'Hamilton', 'Pan_Tompkins',
                           'WQRS'])
 
-# Write info file to save variables
-lines = [list(subjects.astype(str)), experiments,
-         list(methods_names), [str(FS)]]
-HEADERS = ['subject_list', 'experiments', 'methods_names']
-with open('results/info.txt', '+w', encoding='utf-8') as f:
-    for header, line in zip(HEADERS, lines):
-        f.write(header+';')
-        for item in line:
-            f.write(item+',')
-        f.write('\n')
-
-
 # %% Initialize Porr detectors
 detectors = Detectors(FS)
 methods = detectors.get_detector_list()

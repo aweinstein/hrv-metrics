@@ -50,7 +50,7 @@ def confusion_matrix(annotated_peaks,
     return sensitivity, positive_predictivity, tp, fp, fn
 
 
-def read_info(file):
+def read_info():
     """
     Returns dictionary with information about the QRS detection analysis.
 
@@ -58,13 +58,13 @@ def read_info(file):
     ----------
     file -> string with the name of the info file.
     """
+    n_subjects = 25
     info = {}
-    with open(file, 'r', encoding='utf-8') as f:
-        lines = f.readlines()
-    for line in lines:
-        key, item = line.split(';')
-        info[key] = item.split(',')[:-1]
-
+    info['subject_list'] = [str(n) for n in range(n_subjects)]
+    info['experiments'] = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
+    info['methods_names'] = ['Elgendi_et_al', 'Matched_filter',
+                             'Wavelet_transform', 'Engzee', 'Christov',
+                             'Hamilton', 'Pan_Tompkins', 'WQRS']
     return info
 
 

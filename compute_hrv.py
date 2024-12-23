@@ -14,7 +14,7 @@ from utils import read_info, plot_hrv
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # %% Read info file
-info = read_info('results/info.txt')
+info = read_info()
 core_df = pd.read_csv('results/core_df.csv')
 subject_list = np.unique(core_df['subject_idx'])
 experiments = info['experiments']
