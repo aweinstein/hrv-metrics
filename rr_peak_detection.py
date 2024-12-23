@@ -93,7 +93,7 @@ data = pd.DataFrame.from_dict(data_dict)
 core_df = data.to_csv('results/core_df.csv')
 data.to_csv(save_path / 'sensitivity_jf.csv')
 
-# Sensitivity Plot
+# Sensitivity and JF plots
 plt.close('all')
 fig, ax = plt.subplots(figsize=(7, 4))
 sns.barplot(data=data, x='method', y='sensitivity',
@@ -102,21 +102,17 @@ plt.setp(ax.xaxis.get_majorticklabels(), rotation=-
          45, ha="left", rotation_mode="anchor")
 plt.ylabel('Sensitivity [%]')
 plt.xlabel('Method')
-
+plt.title(setup)
 plt.tight_layout()
+fig.savefig(save_path / f'sensitivity_{setup}.pdf')
 
-fig.savefig(save_path / 'sensitivity.pdf')
-
-# %% JF Plot
 fig, ax = plt.subplots(figsize=(7, 4))
-
 sns.barplot(data=data, x='method', y='JF', hue='experiment', errorbar='sd',
             ax=ax)
 plt.setp(ax.xaxis.get_majorticklabels(), rotation=-
          45, ha="left", rotation_mode="anchor")
 plt.ylabel('JF [%]')
 plt.xlabel('Method')
-
+plt.title(setup)
 plt.tight_layout()
-
-fig.savefig(save_path / 'JF.pdf')
+fig.savefig(save_path / f'JF_{setup}.pdf')
