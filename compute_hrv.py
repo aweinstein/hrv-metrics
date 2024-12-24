@@ -11,8 +11,6 @@ import neurokit2 as nk
 from tqdm import tqdm
 from utils import read_info, plot_hrv
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
 # %% Read info file
 info = read_info()
 core_df = pd.read_csv('results/core_df.csv')
@@ -20,7 +18,6 @@ subject_list = np.unique(core_df['subject_idx'])
 experiments = info['experiments']
 methods_names = np.array(info['methods_names'])
 methods_names = methods_names[methods_names != 'Engzee']
-# methods_names.pop(3)
 SETUP = 'einhoven'
 FS = 250  # This should be inside the info file
 READ_PATH = 'results/rr_detection/'
@@ -90,8 +87,7 @@ ann_hrv_arr = an_df.to_numpy().repeat(len(methods_names),
                                       axis=0)[:, :-3]
 error = abs(t_df[t_df.columns[:-3]] - ann_hrv_arr)
 
-error_df = pd.concat([t_df[t_df.columns[-3:]],
-                      error], axis=1)
+error_df = pd.concat([t_df[t_df.columns[-3:]], error], axis=1)
 
 # %% Plot Mean HRV precission
 
@@ -134,8 +130,6 @@ for y in det_hrv.columns:
 # %% Save error figures
 
 data = error_df
-
-# data = error_df
 
 for y in det_hrv.columns:
     fig, ax = plot_hrv(data, x='experiment', y=y, hue='method')
