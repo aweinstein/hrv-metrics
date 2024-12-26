@@ -27,8 +27,8 @@ save_path = Path('results/HRV')
 df_det_hrv = pd.DataFrame()
 df_ann_hrv = pd.DataFrame()
 
-for i, s in enumerate(tqdm(subject_list)):
-    for ii, experiment in enumerate(experiments):
+for s in tqdm(subject_list):
+    for experiment in experiments:
 
         ann_file = read_path / make_peaks_file_name(s, setup, experiment, 'annotated')
         try:
@@ -47,7 +47,7 @@ for i, s in enumerate(tqdm(subject_list)):
 
         df_ann_hrv = pd.concat([df_ann_hrv, ann_hrv])
 
-        for iii, method in enumerate(methods_names):
+        for method in methods_names:
 
             det_file = read_path / make_peaks_file_name(s, setup, experiment, method)
             try:
