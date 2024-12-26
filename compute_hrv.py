@@ -3,13 +3,14 @@ Script to compute HRV metrics
 """
 # %% Import libraries and ecg_class
 import os
+from pathlib import Path
 import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import neurokit2 as nk
 from tqdm import tqdm
-from utils import read_info, plot_hrv
+from utils import read_info, plot_hrv, make_peaks_file_name
 
 # %% Read info file
 info = read_info()
@@ -18,10 +19,10 @@ subject_list = np.unique(core_df['subject_idx'])
 experiments = info['experiments']
 methods_names = np.array(info['methods_names'])
 methods_names = methods_names[methods_names != 'Engzee']
-SETUP = 'einhoven'
+setup = 'einthoven'
 FS = 250  # This should be inside the info file
-READ_PATH = 'results/rr_detection/'
-SAVE_PATH = 'results/HRV'
+read_path = Path('results/rr_detection')
+save_path = Path('results/HRV')
 
 # %% Open detected peaks file
 df_det_hrv = pd.DataFrame()
@@ -30,7 +31,7 @@ df_ann_hrv = pd.DataFrame()
 for i, s in enumerate(tqdm(subject_list)):
     for ii, experiment in enumerate(experiments):
 
-        ann_file = f'{READ_PATH}/s[{s}]/{experiment}/annotated_peaks.npy'
+        ann_file = read_path / make_peaks_file_name(s, setup, experiment, 'annotated')
 
         if os.path.exists(ann_file):
             annotated_peaks = np.load(ann_file)
@@ -50,8 +51,7 @@ for i, s in enumerate(tqdm(subject_list)):
 
         for iii, method in enumerate(methods_names):
 
-            det_file = f'{READ_PATH}/s[{s}]/{experiment}/{method}/detected_peaks.npy'
-
+            det_file = read_path / make_peaks_file_name(s, setup, experiment, method)
             if os.path.exists(det_file):
                 detected_peaks = np.load(det_file)
             else:
@@ -69,7 +69,7 @@ for i, s in enumerate(tqdm(subject_list)):
 
 df_det_hrv = pd.concat([df_det_hrv, df_ann_hrv], axis=0)
 df_det_hrv = df_det_hrv.set_index(np.arange(len(df_det_hrv)))
-df_det_hrv.to_csv(f'{SAVE_PATH}/{SETUP}_HRV_results.csv')
+df_det_hrv.to_csv(save_path / f'{setup}_HRV_results.csv')
 
 # %% Compute error
 
