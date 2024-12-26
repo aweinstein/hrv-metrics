@@ -69,13 +69,6 @@ for i, s in enumerate(tqdm(subject_list)):
 
 df_det_hrv = pd.concat([df_det_hrv, df_ann_hrv], axis=0)
 df_det_hrv = df_det_hrv.set_index(np.arange(len(df_det_hrv)))
-
-
-# %%
-
-if not os.path.exists(SAVE_PATH):
-    os.mkdir(SAVE_PATH)
-
 df_det_hrv.to_csv(f'{SAVE_PATH}/{SETUP}_HRV_results.csv')
 
 # %% Compute error
