@@ -27,14 +27,14 @@ save_path = Path('results/HRV')
 df_det_hrv = pd.DataFrame()
 df_ann_hrv = pd.DataFrame()
 
-for s in tqdm(subject_list):
-    for experiment in experiments:
+for s in tqdm(subject_list, desc='Subject'):
+    for experiment in tqdm(experiments, desc='Condition'):
 
         ann_file = read_path / make_peaks_file_name(s, setup, experiment, 'annotated')
         try:
             annotated_peaks = np.load(ann_file)
         except FileNotFoundError:
-            print(f'Skip subject {s}, experiemnt {experiment}.')
+            tqdm.write(f'Skip subject {s}, experiemnt {experiment}.')
             core_df = core_df[np.logical_and(core_df.subject_idx !=
                               s, core_df.experiment != experiment)]
             continue
@@ -47,13 +47,13 @@ for s in tqdm(subject_list):
 
         df_ann_hrv = pd.concat([df_ann_hrv, ann_hrv])
 
-        for method in methods_names:
+        for method in tqdm(methods_names, desc='Method', leave=False):
 
             det_file = read_path / make_peaks_file_name(s, setup, experiment, method)
             try:
                 detected_peaks = np.load(det_file)
             except FileNotFoundError:
-                print(f'skip subject {s}: {method}')
+                tqdm.write(f'skip subject {s}: {method}')
                 # core_df = core_df[core_df.subject_idx !=
                 #                  s and core_df.method != method]
                 continue
