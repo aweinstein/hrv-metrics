@@ -2,7 +2,6 @@
 Script to compute HRV metrics
 """
 # %% Import libraries and ecg_class
-import os
 from pathlib import Path
 import seaborn as sns
 import numpy as np
@@ -32,11 +31,10 @@ for i, s in enumerate(tqdm(subject_list)):
     for ii, experiment in enumerate(experiments):
 
         ann_file = read_path / make_peaks_file_name(s, setup, experiment, 'annotated')
-
-        if os.path.exists(ann_file):
+        try:
             annotated_peaks = np.load(ann_file)
-        else:
-            print(f'skip subject {s}, Exp: {experiment}...')
+        except FileNotFoundError:
+            print(f'Skip subject {s}, experiemnt {experiment}.')
             core_df = core_df[np.logical_and(core_df.subject_idx !=
                               s, core_df.experiment != experiment)]
             continue
@@ -52,9 +50,9 @@ for i, s in enumerate(tqdm(subject_list)):
         for iii, method in enumerate(methods_names):
 
             det_file = read_path / make_peaks_file_name(s, setup, experiment, method)
-            if os.path.exists(det_file):
+            try:
                 detected_peaks = np.load(det_file)
-            else:
+            except FileNotFoundError:
                 print(f'skip subject {s}: {method}')
                 # core_df = core_df[core_df.subject_idx !=
                 #                  s and core_df.method != method]
