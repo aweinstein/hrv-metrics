@@ -13,6 +13,7 @@ methods_names = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
                  'Engzee', 'Christov', 'Hamilton', 'Pan_Tompkins',
                  'WQRS']
 
+
 def save_figs_as_pdf(figs, fn):
     if isinstance(figs, list):
         pdf = PdfPages(fn)
@@ -22,6 +23,11 @@ def save_figs_as_pdf(figs, fn):
     else:
         figs.savefig(fn, format='pdf')
     print('File saved as', fn)
+
+
+def make_peaks_file_name(s, setup, experiment, method):
+    fn = f'{s:02d}_{setup}_{experiment}_{method}_peaks.npy'
+    return fn
 
 
 def confusion_matrix(annotated_peaks,

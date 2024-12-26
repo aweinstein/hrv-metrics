@@ -13,7 +13,7 @@ from tqdm import tqdm
 from ecgdetectors import Detectors
 from jf.jf_analysis import evaluate as jf
 from jf.sensitivity_analysis import evaluate as sens
-from utils import subjects, experiments, methods_names
+from utils import subjects, experiments, methods_names, make_peaks_file_name
 
 save_path = Path('results/rr_detection')
 fs = 250
@@ -56,8 +56,8 @@ def detect_peaks(setup):
             # tolerance window in samples
             W = int(fs / 10)
 
-            fn = save_path / f'{s:02d}_{setup}_{experiment}_annotated_peaks.npy'
-            np.save(fn, annotated_peaks)
+            fn = make_peaks_file_name(s, setup, experiment, 'annotated')
+            np.save(save_path / fn, annotated_peaks)
 
             figs = []
             for i, method in enumerate(tqdm(methods, desc='Method', leave=False)):
@@ -65,11 +65,8 @@ def detect_peaks(setup):
                 # Find peaks
                 detected_peaks = np.array(method[1](data))
 
-                fn = f'{s:02d}_{setup}_{experiment}_{methods_names[i]}_peaks.npy'
-                fn = save_path / fn
-
-                # Save detected peaks
-                np.save(fn, detected_peaks)
+                fn = make_peaks_file_name(s, setup, experiment, methods_names[i])
+                np.save(save_path / fn, detected_peaks)
 
                 # Compute sensitivity
                 if len(detected_peaks) > 10:
