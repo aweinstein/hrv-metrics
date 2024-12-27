@@ -1,11 +1,9 @@
 """
-Script to compute HRV metrics
+Compute HRV for all subjects, conditions, methods, and setups.
 """
 # %% Import libraries and ecg_class
 from pathlib import Path
-import seaborn as sns
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 import neurokit2 as nk
 from tqdm import tqdm
@@ -68,65 +66,3 @@ for s in tqdm(subject_list, desc='Subject'):
 df_det_hrv = pd.concat([df_det_hrv, df_ann_hrv], axis=0)
 df_det_hrv = df_det_hrv.set_index(np.arange(len(df_det_hrv)))
 df_det_hrv.to_csv(save_path / f'{setup}_HRV_results.csv')
-
-# %% Compute error
-
-t_df = df_det_hrv[df_det_hrv.method != 'Annotated']
-an_df = df_det_hrv[df_det_hrv.method == 'Annotated']
-
-ann_hrv_arr = an_df.to_numpy().repeat(len(methods_names),
-                                      axis=0)[:, :-3]
-error = abs(t_df[t_df.columns[:-3]] - ann_hrv_arr)
-
-error_df = pd.concat([t_df[t_df.columns[-3:]], error], axis=1)
-
-# %% Plot Mean HRV precission
-
-fig, ax = plt.subplots(figsize=(7, 4))
-ax = sns.barplot(df_det_hrv,
-                 x='method', y='HRV_MeanNN',
-                 hue='experiment', ax=ax)
-
-plt.setp(ax.xaxis.get_majorticklabels(), rotation=-
-         45, ha="left", rotation_mode="anchor")
-
-plt.legend(ncol=3)
-
-# plt.show()
-
-# %% Plot SDNN
-
-fig, ax = plt.subplots(figsize=(7, 4))
-ax = sns.barplot(df_det_hrv, x='method', y='HRV_SDNN',
-                 hue='experiment', ax=ax)
-
-plt.setp(ax.xaxis.get_majorticklabels(), rotation=-
-         45, ha="left", rotation_mode="anchor")
-
-plt.legend(ncol=3)
-
-# plt.show()
-plt.close('all')
-
-# %%
-data = df_det_hrv
-for y in det_hrv.columns:
-    fig, ax = plot_hrv(data, x='experiment', y=y, hue='method')
-    fig.tight_layout()
-    fig.savefig(f'results/HRV/plot_{y}.pdf')
-    fig.savefig(f'results/HRV/plot_{y}.png')
-
-    fig.clf()
-    plt.close()
-# %% Save error figures
-
-data = error_df
-
-for y in det_hrv.columns:
-    fig, ax = plot_hrv(data, x='experiment', y=y, hue='method')
-    fig.tight_layout()
-    fig.savefig(f'results/HRV/error_plot_{y}.pdf')
-    fig.savefig(f'results/HRV/error_plot_{y}.png')
-
-    fig.clf()
-    plt.close()
