@@ -7,21 +7,14 @@ from utils import read_info, plot_hrv, save_figs_as_pdf
 
 # %% Read info file
 info = read_info()
-core_df = pd.read_csv('results/core_df.csv')
-# subject_list = np.unique(core_df['subject_idx'])
 experiments = info['experiments']
 methods_names = np.array(info['methods_names'])
 methods_names = methods_names[methods_names != 'Engzee']
 setup = 'einthoven'
-FS = 250  # This should be inside the info file
-
-setup = 'einthoven'
 df_det_hrv = pd.read_csv(f'results/HRV/{setup}_HRV_results.csv')
 t_df = df_det_hrv[df_det_hrv.method != 'Annotated']
 an_df = df_det_hrv[df_det_hrv.method == 'Annotated']
-
-ann_hrv_arr = an_df.to_numpy().repeat(len(methods_names),
-                                      axis=0)[:, :-3]
+ann_hrv_arr = an_df.to_numpy().repeat(len(methods_names), axis=0)[:, :-3]
 error = abs(t_df[t_df.columns[:-3]] - ann_hrv_arr)
 error_df = pd.concat([t_df[t_df.columns[-3:]], error], axis=1)
 hrvs = df_det_hrv.columns.tolist()
