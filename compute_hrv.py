@@ -58,15 +58,16 @@ def compute_hrv(setup, methods_names):
 
 
 if __name__ == '__main__':
+    parent_path = Path(__file__).resolve().parent
+    read_path =  parent_path / Path('results/rr_detection')
+    save_path = parent_path / Path('results/HRV')
     info = read_info()
-    core_df = pd.read_csv('results/core_df.csv')
+    core_df = pd.read_csv(parent_path / Path('results/core_df.csv'))
     subject_list = np.unique(core_df['subject_idx'])
     experiments = info['experiments']
     methods_names = np.array(info['methods_names'])
     methods_names = methods_names[methods_names != 'Engzee']
     FS = 250  # This should be inside the info file
-    read_path = Path('results/rr_detection')
-    save_path = Path('results/HRV')
     compute_hrv('einthoven', methods_names)
     methods_names = np.array(info['methods_names'])
     compute_hrv('chest_strap', methods_names)

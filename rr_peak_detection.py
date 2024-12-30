@@ -1,8 +1,6 @@
 """
 Exploration for different methods to extract RR-interval times.
 """
-
-# %% Import libraries and ecg_class
 from pathlib import Path
 import seaborn as sns
 from ecg_gudb_database import GUDb
@@ -15,7 +13,7 @@ from jf.jf_analysis import evaluate as jf
 from jf.sensitivity_analysis import evaluate as sens
 from utils import subjects, experiments, methods_names, make_peaks_file_name
 
-save_path = Path('results/rr_detection')
+save_path = Path(__file__).resolve().parent /  Path('results/rr_detection')
 fs = 250
 # %% Initialize Porr detectors
 detectors = Detectors(fs)
@@ -87,8 +85,7 @@ def detect_peaks(setup):
                  'experiment': np.array(experiments_name),
                  'subject_idx': np.array(subject_idx)}
     data = pd.DataFrame.from_dict(data_dict)
-    core_df = data.to_csv('results/core_df.csv')
-    data.to_csv(save_path / 'sensitivity_jf.csv')
+    data.to_csv(save_path / Path('core_df.csv'))
 
     # Sensitivity and JF plots
     plt.close('all')
