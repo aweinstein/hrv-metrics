@@ -1,5 +1,5 @@
 """
-Detects QRS peaks for all subjects, conditions, and setup.
+Detects QRS peaks for all subjects, conditions, and setups.
 """
 from pathlib import Path
 import seaborn as sns
