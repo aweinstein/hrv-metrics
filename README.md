@@ -27,7 +27,7 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 - ```mregression.py```: Makes multiple regression plots.
 - ```neurokit_vs_Porr.py```
 - ```plot_all_ecgs.py```: Plot the ECGs for all subjects, setups, and conditions.
-- ```rr_peak_detection.py```:  Detects QRS peaks for the dataset. One of the parameters of the script is which setup to use. Options are 'Chest strap' or 'Einhoven'
+- ```rr_peak_detection.py```: Detects QRS peaks for all subjects, conditions, and setup.
 - ```test_peak_detection.py```
 - ```utils.py```: Utility functions.
 

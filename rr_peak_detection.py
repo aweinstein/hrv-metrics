@@ -1,5 +1,5 @@
 """
-Exploration for different methods to extract RR-interval times.
+Detects QRS peaks for all subjects, conditions, and setup.
 """
 from pathlib import Path
 import seaborn as sns
