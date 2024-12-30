@@ -1,7 +1,6 @@
 """
 Plot the ECGs for all subjects, setups, and conditions.
 """
-
 from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,7 +27,6 @@ def plot_single_case(s, experiment, setup):
     plt.plot(ecg.t, data)
     plt.scatter(ecg.t[annotated_peaks], data[annotated_peaks],
                 color='red', label='Annotated Peaks', marker='o', s=50)
-
 
     if annotated:
         title = f'Subject {s}, condition {experiment}, setup: {setup}'
