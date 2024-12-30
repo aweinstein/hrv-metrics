@@ -17,7 +17,6 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 
 - ```ccc_barplot.py```: Makes CCC plots.
 - ```check_annotation.py```: Print subject, setup, and condition for which there are no annotations.
-- ```check_nonAnnotated.py```
 - ```compute_hrv.py```:  Compute HRV for all subjects, conditions, methods, and setups.
 - ```cs_jogging.py```: Prints which subjects-experiment doesn't have annotations. Plots a sample of the Einhoven and the Chest Strap conditions to demonstrate the difference of noise level between the setups.
 - ```engzee_plots.py```: Plots a sample of the Chest Strap setup when the Engzee method fails.
@@ -27,6 +26,7 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 - ```make_table.py```
 - ```mregression.py```: Makes multiple regression plots.
 - ```neurokit_vs_Porr.py```
+- ```plot_all_ecgs.py```: Plot the ECGs for all subjects, setups, and conditions.
 - ```rr_peak_detection.py```:  Detects QRS peaks for the dataset. One of the parameters of the script is which setup to use. Options are 'Chest strap' or 'Einhoven'
 - ```test_peak_detection.py```
 - ```utils.py```: Utility functions.
