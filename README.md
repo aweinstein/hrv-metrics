@@ -16,7 +16,7 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 ## Scripts
 
 - ```ccc_barplot.py```: Makes CCC plots.
-- ```check_annotation.py```
+- ```check_annotation.py```: Print subject, setup, and condition for which there are no annotations.
 - ```check_nonAnnotated.py```
 - ```compute_hrv.py```:  Compute HRV for all subjects, conditions, methods, and setups.
 - ```cs_jogging.py```: Prints which subjects-experiment doesn't have annotations. Plots a sample of the Einhoven and the Chest Strap conditions to demonstrate the difference of noise level between the setups.

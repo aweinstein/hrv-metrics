@@ -1,62 +1,21 @@
-# %% Import libraries and ecg_class
-import os
-import seaborn as sns
+"""
+Print subject, setup, and condition for which there are no annotations.
+"""
+
 from ecg_gudb_database import GUDb
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 from tqdm import tqdm
-from ecgdetectors import Detectors
-from jf.jf_analysis import evaluate as jf
-from jf.sensitivity_analysis import evaluate as sens
-from utils import save_figs_as_pdf
 
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
-PLOT = False
-SAVE_PATH = 'results/rr_detection'
-if not os.path.exists(SAVE_PATH):
-    os.mkdir(SAVE_PATH)
-
-NSUBJECTS = 24
-FS = 250
-DETECTOR = 'Einhoven'
+nsubjects = 25
 experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
-subjects = np.arange(0, NSUBJECTS+1)
+subjects = range(nsubjects)
 
-# %%
-
-methods_names = np.array(['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
-                          'Engzee', 'Christov', 'Hamilton', 'Pan_Tompkins',
-                          'WQRS'])
-
-# %% Initialize Porr detectors
-detectors = Detectors(FS)
-methods = detectors.get_detector_list()
-
-# Allocate arrays that later compose the DF
-sensitivity = []
-JF = []
-methods_name = []
-experiments_name = []
-subject_idx = []
-
-# First, loop trough subjects
-for i, s in enumerate(subjects):
-
-    # Second, loop thorugh experiments
-    # Iterate through experiments
-    for ii, experiment in enumerate(experiments):
-
-        ecg_class = GUDb(s, experiment)
-
-        # Anotated R-peaks and data
-        if DETECTOR == 'Einhoven':
-            anno_exists = ecg_class.anno_cables_exists
-            annotated_peaks = ecg_class.anno_cables
-            data = ecg_class.einthoven_II
-
-        if not anno_exists:
-            print(f'Subject: {s} | Experiment: {experiment} | No annotations')
-# %%
+for s in tqdm(subjects, desc='Subject'):
+    for experiment in tqdm(experiments, desc='Setup', leave=False):
+        ecg = GUDb(s, experiment)
+        if not ecg.anno_cables_exists:
+            tqdm.write(f'Subject {s:2d}, setup Einthoven, condition {experiment}: '
+                       'no annotations')
+        if not ecg.anno_cs_exists:
+            tqdm.write(f'Subject {s:2d}, setup cable strap, condition {experiment}: '
+                       'no annotations')
