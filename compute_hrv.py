@@ -51,7 +51,7 @@ def compute_hrv(setup, methods_names):
                     df_det_hrv = pd.concat([df_det_hrv, det_hrv])
 
     df_det_hrv = pd.concat([df_det_hrv, df_ann_hrv], axis=0)
-    df_det_hrv = df_det_hrv.set_index(np.arange(len(df_det_hrv)))
+    df_det_hrv = df_det_hrv.reset_index(drop=True)
     fn = save_path / f'{setup}_HRV_results.csv'
     df_det_hrv.to_csv(fn)
     print('Results saved in', fn)
