@@ -18,7 +18,7 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 - ```ccc_barplot.py```: Makes CCC plots.
 - ```check_annotation.py```
 - ```check_nonAnnotated.py```
-- ```compute_hrv.py```:  Computes HRV metrics. It will use the files in the results folder. The script has a parameter setup, with options: 'Chest strap' or 'Einhoven'. IMPORTANT: You need to make sure the results in the results folder are from the setup option in this script, otherwise, they will be mislabeled during this step.
+- ```compute_hrv.py```:  Compute HRV for all subjects, conditions, methods, and setups.
 - ```cs_jogging.py```: Prints which subjects-experiment doesn't have annotations. Plots a sample of the Einhoven and the Chest Strap conditions to demonstrate the difference of noise level between the setups.
 - ```engzee_plots.py```: Plots a sample of the Chest Strap setup when the Engzee method fails.
 - ```export_HRV.py```: Exports a valid subset of HRV metrics. It also shows which rows in the dataframe contains null values.
