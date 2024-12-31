@@ -8,3 +8,4 @@ results/info.txt
 R/.RData
 R/.Rhistory
 R/.Rproj.user
+*.tex
