@@ -54,7 +54,7 @@ def plot_single_case():
 
 
 def check_all(setup):
-    """Check for every subject and experiment condition where Engzee detector fails.
+    """Find detectors for with less than 10 detections.
     Returns a dataframe with recordings with less than 10 detections.
     """
     df = []
