@@ -18,8 +18,8 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 - ```ccc_barplot.py```: Makes CCC plots.
 - ```check_annotation.py```: Print subject, setup, and condition for which there are no annotations.
 - ```compute_hrv.py```:  Compute HRV for all subjects, conditions, methods, and setups.
-- ```engzee_plots.py```: Plots a sample of the Chest Strap setup when the Engzee method fails.
 - ```export_HRV.py```: Exports a valid subset of HRV metrics. It also shows which rows in the dataframe contains null values.
+- ```find_failed_detectors.py```: Finds detectors that fails to detect 10 or more R peaks.
 - ```interval_tachogram.py```: Plots histogram of RR intervals using np.diff
 - ```jogging_example.py```: Plots an example of the ECGs for Einthoven and the Chest Strap setup to demonstrate the difference of noise level between the setups.
 - ```load_database.py```

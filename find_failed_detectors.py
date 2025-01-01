@@ -1,5 +1,5 @@
 """
-Plot cases where Engzee fails to detect peaks.
+Finds detectors that fails to detect 10 or more R peaks.
 """
 from pathlib import Path
 from ecg_gudb_database import GUDb
@@ -54,7 +54,7 @@ def plot_single_case():
 
 
 def check_all(setup):
-    """Find detectors for with less than 10 detections.
+    """Find detectors unable to detect more than 10 R peaks.
     Returns a dataframe with recordings with less than 10 detections.
     """
     df = []
