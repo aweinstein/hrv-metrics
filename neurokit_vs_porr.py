@@ -1,5 +1,5 @@
 """
-Compare Porr, Neurokit, and Neurokit with clean data
+Compare Porr, Neurokit, and Neurokit with clean data.
 """
 import os
 import ecgdetectors
