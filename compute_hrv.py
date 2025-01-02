@@ -66,7 +66,6 @@ if __name__ == '__main__':
     subject_list = np.unique(core_df['subject_idx'])
     experiments = info['experiments']
     methods_names = np.array(info['methods_names'])
-    methods_names = methods_names[methods_names != 'Engzee']
     FS = 250  # This should be inside the info file
     compute_hrv('einthoven', methods_names)
     methods_names = np.array(info['methods_names'])
