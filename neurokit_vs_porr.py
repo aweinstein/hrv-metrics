@@ -1,4 +1,6 @@
-# %% Import libraries and ecg_class
+"""
+Compare Porr, Neurokit, and Neurokit with clean data
+"""
 import os
 import ecgdetectors
 import matplotlib.pyplot as plt
