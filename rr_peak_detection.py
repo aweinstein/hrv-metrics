@@ -48,7 +48,6 @@ def detect_peaks(setup):
                            'Skipping it.')
                 continue
 
-            time = ecg_class.t
             fs = ecg_class.fs
 
             # tolerance window in samples
@@ -57,7 +56,6 @@ def detect_peaks(setup):
             fn = make_peaks_file_name(s, setup, experiment, 'annotated')
             np.save(save_path / fn, annotated_peaks)
 
-            figs = []
             for i, method in enumerate(tqdm(methods, desc='Method', leave=False)):
 
                 # Find peaks
