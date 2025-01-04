@@ -5,13 +5,11 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from utils import read_info, save_figs_as_pdf, make_peaks_file_name
+from utils import read_info, save_figs_as_pdf, make_peaks_file_name, subjects
 from tqdm import tqdm
 
 results_path = Path(__file__).resolve().parent /  'results'
 info = read_info()
-core_df = pd.read_csv(results_path / 'core_df.csv')
-subject_list = np.unique(core_df['subject_idx'])
 experiments = info['experiments']
 methods_names = info['methods_names']
 
@@ -21,7 +19,7 @@ read_path = results_path / 'rr_detection'
 
 def plot_tachograms(setup):
     figs = []
-    for s in tqdm(subject_list, desc='Subject'):
+    for s in tqdm(subjects, desc='Subject'):
         for experiment in tqdm(experiments, desc='Condition'):
             # Load annotated peaks
             ann_file = read_path / make_peaks_file_name(s, setup, experiment, 'annotated')

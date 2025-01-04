@@ -1,4 +1,4 @@
-""""
+"""
 Utilities to detect and calculate HRV measures.
 """
 import numpy as np
