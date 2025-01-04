@@ -52,7 +52,7 @@ def plot_all_ecg(setup, figs_annotated, figs_nonannotated):
                 figs_nonannotated.append(fig)
 
 if __name__ == '__main__':
-    save_path = Path(__file__).resolve().parent /  Path('results')
+    save_path = Path(__file__).resolve().parent /  'results'
     subjects = np.arange(0, 24)
     experiments = ['sitting', 'maths', 'walking', 'hand_bike', 'jogging']
     figs_annotated, figs_nonannotated = [], []

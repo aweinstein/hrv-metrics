@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from ecgdetectors import Detectors
 from tqdm import tqdm
 
-save_path = save_path = Path(__file__).resolve().parent /  Path('results')
+save_path = Path(__file__).resolve().parent / 'results'
 FS = 250
 subject = 9
 experiment = 'jogging'

@@ -13,7 +13,7 @@ from jf.jf_analysis import evaluate as jf
 from jf.sensitivity_analysis import evaluate as sens
 from utils import subjects, experiments, methods_names, make_peaks_file_name
 
-save_path = Path(__file__).resolve().parent /  Path('results/rr_detection')
+save_path = Path(__file__).resolve().parent / 'results/rr_detection'
 fs = 250
 # %% Initialize Porr detectors
 detectors = Detectors(fs)

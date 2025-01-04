@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-save_path = Path(__file__).resolve().parent /  Path('results/HRV')
+save_path = Path(__file__).resolve().parent /  'results/HRV'
 
 def export_hrv(setup):
     hrv_metrics = pd.read_csv(save_path / f'{setup}_HRV_results.csv')

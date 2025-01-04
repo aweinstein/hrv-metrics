@@ -10,7 +10,7 @@ from jf.sensitivity_analysis import evaluate as sens
 import pandas as pd
 from tqdm import tqdm
 
-save_path = Path(__file__).resolve().parent /  Path('results')
+save_path = Path(__file__).resolve().parent /  'results'
 FS = 250
 
 def plot_single_case():
@@ -99,7 +99,7 @@ def check_all(setup):
     df = pd.DataFrame.from_dict(df)
     print(f'Number of recordings without detections: {count}')
     df = df[df['detected_peaks'] < 10]
-    df.to_csv(save_path / Path(f'engzee_{setup}_fail_table.csv'))
+    df.to_csv(save_path / f'engzee_{setup}_fail_table.csv')
     return df
 
 
