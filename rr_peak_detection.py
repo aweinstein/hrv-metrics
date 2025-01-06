@@ -83,7 +83,7 @@ def detect_peaks(setup):
                  'experiment': np.array(experiments_name),
                  'subject_idx': np.array(subject_idx)}
     data = pd.DataFrame.from_dict(data_dict)
-    data.to_csv(save_path / f'sensitiviy_jf_{setup}.csv')
+    data.to_csv(save_path / f'sensitivity_jf_{setup}.csv')
 
     # Sensitivity and JF plots
     plt.close('all')
