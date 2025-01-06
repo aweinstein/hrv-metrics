@@ -109,7 +109,7 @@ if __name__ == '__main__':
 
     # %% Load workbooks
     data_cs = load_workbook('tables/estadistica_chest_strap.xlsx')
-    data_loose = load_workbook('tables/estadistica_einhoven.xlsx')
+    data_loose = load_workbook('tables/estadistica_einthoven.xlsx')
 
     # %% Load workbook
     for table in tables:

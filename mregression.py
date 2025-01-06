@@ -92,9 +92,9 @@ def plot_all_regressions():
     df_ccc = pd.read_csv('datahrv/ccc_chest_strap_df.csv')
     plot_setup_regressions(df, df_ccc, 'figures/regressions_chest_strap.pdf')
 
-    df = pd.read_csv('datahrv/einhoven_subset_HRV_not_jogging_with_Engzee.csv')
-    df_ccc = pd.read_csv('datahrv/ccc_einhoven_df.csv')
-    plot_setup_regressions(df, df_ccc, 'figures/regressions_einhoven.pdf', skip_exp=['jogging'])
+    df = pd.read_csv('datahrv/einthoven_subset_HRV_not_jogging_with_Engzee.csv')
+    df_ccc = pd.read_csv('datahrv/ccc_einthoven_df.csv')
+    plot_setup_regressions(df, df_ccc, 'figures/regressions_einthoven.pdf', skip_exp=['jogging'])
 
 
 def plot_paper_regression_one_fig():

@@ -58,6 +58,6 @@ fn_data <- "../datahrv/chest_strap_setup_subset_HRV_notEngzee.csv"
 fn_ccc <- "../datahrv/ccc_chest_strap_df.csv"
 data_ein = get_ccc(fn_data, fn_ccc, skip_methods=c("Engzee"))
 
-fn_data <- "../datahrv/einhoven_subset_HRV_not_jogging_with_Engzee.csv"
-fn_ccc <- "../datahrv/ccc_einhoven_df.csv"
+fn_data <- "../datahrv/einthoven_subset_HRV_not_jogging_with_Engzee.csv"
+fn_ccc <- "../datahrv/ccc_einthoven_df.csv"
 data_ein <- get_ccc(fn_data, fn_ccc, skip_experiments=c("jogging"))

@@ -91,7 +91,7 @@ def make_all_plots():
     methods = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform', 'Engzee',
                'Christov', 'Hamilton', 'Pan_Tompkins', 'WQRS']
     experiments = ['sitting', 'maths', 'walking', 'handbk']
-    fig = make_barplots('datahrv/ccc_einhoven_df.csv', methods, experiments)
+    fig = make_barplots('datahrv/ccc_einthoven_df.csv', methods, experiments)
     figs.append(fig)
 
     plt.show()
