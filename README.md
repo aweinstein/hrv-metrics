@@ -15,6 +15,7 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 
 ## Scripts
 
+- ```ccc_and_jf.py```: Shows the relationship between CCC and JF.
 - ```ccc_barplot.py```: Makes CCC plots.
 - ```check_annotation.py```: Print subject, setup, and condition for which there are no annotations.
 - ```compute_hrv.py```:  Compute HRV for all subjects, conditions, methods, and setups.
