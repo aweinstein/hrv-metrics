@@ -29,6 +29,7 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 - ```plot_all_ecgs.py```: Plot the ECGs for all subjects, setups, and conditions.
 - ```rr_peak_detection.py```: Detects QRS peaks for all subjects, conditions, and setups.
 - ```utils.py```: Utility functions.
+- ```vis_eeg.py```: Functions to visualize the ECG and the annotations.
 
 ## Requirements
 
