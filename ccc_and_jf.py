@@ -54,7 +54,7 @@ def plot_regressions(setup):
             df = pd.concat([get_data(setup[0], metric),
                             get_data(setup[1], metric)])
         sns.regplot(data=df, x='JF', y='ccc', ci=None, ax=ax, label=metric,
-                    scatter_kws={"s": 10})
+                    scatter_kws={'s': 10})
         rsquared = compute_rsquared(df)
         title = rf'{metric.split("_")[1]} ($R^2$: {rsquared:.2f})'
         ax.set_title(title)
@@ -76,14 +76,60 @@ def plot_regressions(setup):
     return fig
 
 
+def plot_both_regressions():
+    """
+    Do independent regressions for each setup and the show them in the same
+    plot.
+    """
+    print('Regression for both setups')
+    rows, cols = 6, 4
+    fig, axs = plt.subplots(rows, cols, layout='constrained',
+                            figsize=(8.3, 10.2))
+    for metric, ax in zip(metrics, axs.flat):
+        df = get_data('chest_strap', metric)
+        sns.regplot(data=df, x='JF', y='ccc', ci=None, ax=ax,
+                    scatter_kws={'s': 10}, label='Chest Strap',
+                    color=sns.color_palette()[0])
+        rsquared_chest = compute_rsquared(df)
+        df = get_data('einthoven', metric)
+        sns.regplot(data=df, x='JF', y='ccc', ci=None, ax=ax,
+                    scatter_kws={'s': 10}, label='Loose cable',
+                    color=sns.color_palette()[1])
+        rsquared_einthoven = compute_rsquared(df)
+
+        title = (rf'{metric.split("_")[1]} ($R^2$: {rsquared_chest:.2f}, '
+                 f'{rsquared_einthoven:.2f})')
+        ax.set_title(title, fontsize=10)
+
+    for i in range(rows):
+        for j in range(cols):
+            if j == 0:
+                axs[i,j].set_ylabel('CCC')
+            else:
+                axs[i,j].set_ylabel('')
+            if (i < 5):
+                axs[i,j].set_xlabel('')
+            axs[i,j].set_xlim(df['JF'].min() - 1, 101)
+            axs[i,j].set_ylim(- 0.1, 1.1)
+    axs[4,3].set_xlabel('JF')
+    last_panel = axs[-1,-1]
+    last_panel.axis('off')
+    last_panel.legend(handles=axs[0,0].get_legend_handles_labels()[0],
+                      labels=axs[0,0].get_legend_handles_labels()[1],
+                      loc='center')
+    return fig
+
+
 if __name__ == '__main__':
     plt.close('all')
     figs = []
     figs.append(plot_regressions('chest_strap'))
     figs.append(plot_regressions('einthoven'))
     figs.append(plot_regressions(['chest_strap', 'einthoven']))
+    figs.append(plot_both_regressions())
     save_path = Path(__file__).resolve().parent / 'figures'
-    fns = ['ccc_jf_chest_strap.pdf', 'ccc_jf_einthoven.pdf', 'ccc_jf_both.pdf']
+    fns = ['ccc_jf_chest_strap.pdf', 'ccc_jf_einthoven.pdf', 'ccc_jf_both.pdf',
+           'ccc_jf_both_overlay']
     for fn, fig in zip(fns, figs):
         print('Saving figure as', fn)
         fig.savefig(save_path / fn)
