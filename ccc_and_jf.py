@@ -129,7 +129,7 @@ if __name__ == '__main__':
     figs.append(plot_both_regressions())
     save_path = Path(__file__).resolve().parent / 'figures'
     fns = ['ccc_jf_chest_strap.pdf', 'ccc_jf_einthoven.pdf', 'ccc_jf_both.pdf',
-           'ccc_jf_both_overlay']
+           'ccc_jf_both_overlay.pdf']
     for fn, fig in zip(fns, figs):
         print('Saving figure as', fn)
         fig.savefig(save_path / fn)
