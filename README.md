@@ -23,7 +23,6 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 - ```find_failed_detectors.py```: Finds detectors that fails to detect 10 or more R peaks.
 - ```interval_tachogram.py```: Plots histogram of RR intervals using np.diff
 - ```jogging_example.py```: Plots an example of the ECGs for Einthoven and the Chest Strap setup to demonstrate the difference of noise level between the setups.
-- ```make_table.py```
 - ```mregression.py```: Makes multiple regression plots.
 - ```neurokit_vs_Porr.py```: Compare Porr, Neurokit, and Neurokit with clean data.
 - ```plot_all_ecgs.py```: Plot the ECGs for all subjects, setups, and conditions.
