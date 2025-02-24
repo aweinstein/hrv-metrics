@@ -129,7 +129,7 @@ def plot_paper_regression():
     metrics = ['HRV_MeanNN', 'HRV_TINN', 'HRV_LFHF']
 
     for metric in metrics:
-        _, axs = plt.subplots(rows, cols, layout='constrained', figsize=(17, 8))
+        _, axs = plt.subplots(rows, cols, layout='constrained', figsize=(12.2, 6))
         for method, ax in zip(methods, axs.flat):
             plot_regression(df, df_ccc, metric, method, ax, lfontsize='small')
             ax.set_ylabel(metric.split('_')[1])
