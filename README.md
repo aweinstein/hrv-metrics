@@ -1,8 +1,6 @@
 # HRV-paper
 
-This is the repository for the paper "Effects of Detection Algorithms of the Electrocardiograms R wave in Heart Rate Variability Metrics" (tentative title). 
-
-This repository contains all the corresponding code. It also includes other issues associated with the paper.ng code here.It also contains other issues associated with the paper.
+This is the repository for the paper "Effects of Detection Algorithms of the Electrocardiograms R wave in Heart Rate Variability Metrics." It contains all the necessary code to reproduce the paper's results.
 
 ## Databases
 
