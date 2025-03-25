@@ -6,6 +6,13 @@ This is the repository for the paper "Effects of Detection Algorithms of the Ele
 
 You can install the dependencies with `pip install -r requirements.txt`. This code also depends on the code from the [jf_ecg_benchmark repository](https://github.com/berndporr/JF-ECG-Benchmark). Since this code can not be installed using `pip` at the moment, it is included in the repository.
 
+## Instructions
+
+To reproduce the paper's results run the following scripts:
+
+- Figure 2: ```jogging_example.py```.
+- Figure 3: ```vis_eeg.py```.
+
 ## Scripts
 
 The following is a description of all the scripts in the repository:
