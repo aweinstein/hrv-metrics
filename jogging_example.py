@@ -39,5 +39,7 @@ axs[1].set_xlabel('Time [s]')
 
 plt.xlim(0, 5.5)
 plt.tight_layout()
-plt.savefig(f'{save_path}/jogging_example.pdf')
+fn = f'{save_path}/jogging_example.pdf'
+plt.savefig(fn)
+print('Figure saved as', fn)
 plt.show()
