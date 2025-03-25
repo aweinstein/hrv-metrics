@@ -2,16 +2,13 @@
 
 This is the repository for the paper "Effects of Detection Algorithms of the Electrocardiograms R wave in Heart Rate Variability Metrics." It contains all the necessary code to reproduce the paper's results.
 
-## Databases
+## Requirements
 
-Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R peaks, recorded and filmed under realistic conditions. University of Glasgow
-
-
-[Howell, L. and Porr, B. (2018) High precision ECG Database with annotated R peaks, recorded and filmed under realistic conditions.](https://doi.org/DOI:10.5525/gla.researchdata.716)
-
-[Also available through the Python API.](https://github.com/berndporr/ECG-GUDB)
+You can install the dependencies with `pip install -r requirements.txt`. This code also depends on the code from the [jf_ecg_benchmark repository](https://github.com/berndporr/JF-ECG-Benchmark). Since this code can not be installed using `pip` at the moment, it is included in the repository.
 
 ## Scripts
+
+The following is a description of all the scripts in the repository:
 
 - ```ccc_and_jf.py```: Shows the relationship between CCC and JF.
 - ```ccc_barplot.py```: Makes CCC plots.
@@ -28,7 +25,7 @@ Howell, L. and Porr, B. (2018); High precision ECG Database with annotated R pea
 - ```utils.py```: Utility functions.
 - ```vis_eeg.py```: Functions to visualize the ECG and the annotations.
 
-## Requirements
 
-You can install the dependencies with `pip install -r requirements.txt`. This code also depends on the code from the [jf_ecg_benchmark repository](https://github.com/berndporr/JF-ECG-Benchmark). Since, at the moment, this code can not be installed using `pip`, we copy it to the repo.
+## Databases
 
+This work uses the database [Howell, L. and Porr, B. (2018) High precision ECG Database with annotated R peaks, recorded and filmed under realistic conditions.](https://doi.org/DOI:10.5525/gla.researchdata.716). It can be accesed through a [Python API.](https://github.com/berndporr/ECG-GUDB).
