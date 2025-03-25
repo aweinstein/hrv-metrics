@@ -46,7 +46,7 @@ def plot_single_case(subject, experiment, setup, methods): # Falta  metodos
     _, ax = plt.subplots(figsize=(6, 4))
     ax.plot(time, data, color='black', label='ECG')
     ax.set_prop_cycle(marker=['o', 'x', '+', 'D', '1', '2', '3'],
-                      color=['#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', 
+                      color=['#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b',
                              '#e377c2', '#7f7f7f'])
     ms = 7
     if anno_exists:
@@ -63,14 +63,15 @@ def plot_single_case(subject, experiment, setup, methods): # Falta  metodos
         sensibilities[detector] = sens(detected_peaks, annotated_peaks, FS/10)[0]
         ax.plot(time[detected_peaks], data[detected_peaks], ls='None',
                 label=detector, ms=ms)
-        
 
     ax.set_title('Raw ECG signal with annotated and detected peaks')
     ax.legend(loc='lower right')
     ax.set_xlim(0, 5.5)
     ax.set_xlabel('Time [s]')
     ax.set_ylabel('ECG [mV]')
-    plt.savefig(save_path / 'engzee_fail.pdf')
+    fn = save_path / 'engzee_fail.pdf'
+    plt.savefig(fn)
+    print('Figure saved as', fn)
 
     return jfs, sensibilities
 
@@ -84,8 +85,3 @@ if __name__ == '__main__':
     for method in methods:
         print(f'Setup {setup}, subject {subject}, experiment {experiment} '
               f'method {method}: sensitivity = {sens[method]:.2f} JF = {jf[method]:.2f}')
-
-
-
-
- 
