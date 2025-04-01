@@ -12,7 +12,7 @@ To reproduce the paper's results run the following scripts:
 
 - Figure 2: ```jogging_example.py```.
 - Figure 3: ```vis_eeg.py```.
-
+- Figure 4: ```ccc_barplot.py```. 
 ## Scripts
 
 The following is a description of all the scripts in the repository:
