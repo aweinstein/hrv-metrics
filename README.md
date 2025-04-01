@@ -14,6 +14,7 @@ To reproduce the paper's results run the following scripts:
 - Figure 3: ```vis_eeg.py```.
 - Figure 4: ```ccc_barplot.py```. 
 - Figure 5: ```mregression.py```.
+- Figure 6: ```ccc_and_jf.py```.
 
 ## Scripts
 
