@@ -44,7 +44,8 @@ def check_all(setup):
                            'Skipping it.')
                 continue
             else:
-                for name, detector in tqdm(detectors.get_detector_list(), desc='Detector', leave=True):
+                for name, detector in tqdm(detectors.get_detector_list(),
+                                           desc='Detector', leave=True):
                     detected_peaks = detector(data)
                     df.append({"detected_peaks": len(detected_peaks),
                                "percentage": len(detected_peaks) / len(annotated_peaks) * 100,
