@@ -1,10 +1,5 @@
 # HRV-paper
-+------------------------------------------------------------+
-| |zenodo||
-+------------------------------------------------------------+
-
-.. |zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.15213192.svg
-   :target: https://zenodo.org/doi/10.5281/zenodo.15213192
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15213192.svg)](https://doi.org/10.5281/zenodo.15213192)
 
 This is the repository for the paper "Effects of Detection Algorithms of the Electrocardiograms R wave in Heart Rate Variability Metrics." It contains all the necessary code to reproduce the paper's results.
 
