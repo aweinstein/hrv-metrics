@@ -4,6 +4,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from utils import save_figs_as_pdf
 
+# Map the name of the method to the name used in the paper
+method_to_name = {'Elgendi_et_al': 'two_average',
+                  'Matched_filter': 'matched_filter',
+                  'Wavelet_transform': 'swt',
+                  'Christov': 'christov',
+                  'Hamilton': 'hamilton',
+                  'Pan_Tompkins': 'pan_tompkins',
+                  'WQRS': 'wqrs'}
+
 
 def get_data_method(df, method, metric):
     dfr = df[(df['method'] == method) | (df['method']=='Annotated')]
@@ -46,7 +55,7 @@ def plot_regression(df, df_ccc, metric, method, ax=None, skip_exp=[], lfontsize=
 
     x = [dfr['annotated'].min(), dfr['annotated'].max()]
     ax.plot(x, x, linestyle=':')
-    ax.set_title(method)
+    ax.set_title(method_to_name[method])
     ax.legend(loc='best', fontsize=lfontsize)
     return ax
 

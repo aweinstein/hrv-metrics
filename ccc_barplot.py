@@ -16,6 +16,15 @@ Metrics = ['HRV_MeanNN', 'HRV_SDNN', 'HRV_RMSSD', 'HRV_SDSD', 'HRV_CVSD',
            'HRV_LFn', 'HRV_HFn', 'HRV_LnHF', 'HRV_SD1', 'HRV_SD2',
            'HRV_SD1SD2', 'HRV_SampEn', 'HRV_TP']
 
+# Map the name of the method to the name used in the paper
+method_to_name = {'Elgendi_et_al': 'two_average',
+                  'Matched_filter': 'matched_filter',
+                  'Wavelet_transform': 'swt',
+                  'Christov': 'christov',
+                  'Hamilton': 'hamilton',
+                  'Pan_Tompkins': 'pan_tompkins',
+                  'WQRS': 'wqrs'}
+
 
 def make_barplot(df, methods, experiments, axs, metrics=None, ytitle=0.89):
     if metrics is None:
@@ -33,7 +42,7 @@ def make_barplot(df, methods, experiments, axs, metrics=None, ytitle=0.89):
         for method in methods:
             data = dfm[dfm['method'] == method]['ccc'].values
             offset = width * multiplier
-            ax.bar(x + offset, data, width, label=method)
+            ax.bar(x + offset, data, width, label=method_to_name[method])
             multiplier += 1
 
         ax.set_xticks(x + 3*width, experiments)

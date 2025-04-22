@@ -88,12 +88,12 @@ def plot_both_regressions():
     for metric, ax in zip(metrics, axs.flat):
         df = get_data('chest_strap', metric)
         sns.regplot(data=df, x='JF', y='ccc', ci=None, ax=ax,
-                    scatter_kws={'s': 10}, label='Chest Strap',
+                    scatter_kws={'s': 10}, label='Chest strap',
                     color=sns.color_palette()[0])
         rsquared_chest = compute_rsquared(df)
         df = get_data('einthoven', metric)
         sns.regplot(data=df, x='JF', y='ccc', ci=None, ax=ax,
-                    scatter_kws={'s': 10}, label='Loose cable',
+                    scatter_kws={'s': 10}, label='Loose cables',
                     color=sns.color_palette()[1])
         rsquared_einthoven = compute_rsquared(df)
 
