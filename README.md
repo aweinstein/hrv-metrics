@@ -39,4 +39,4 @@ The following is a description of all the scripts in the repository:
 
 ## Databases
 
-This work uses the database [Howell, L. and Porr, B. (2018) High precision ECG Database with annotated R peaks, recorded and filmed under realistic conditions.](https://doi.org/DOI:10.5525/gla.researchdata.716). It can be accesed through a [Python API.](https://github.com/berndporr/ECG-GUDB).
+This work uses the database [Howell, L. and Porr, B. (2018) High precision ECG Database with annotated R peaks, recorded and filmed under realistic conditions.](https://doi.org/DOI:10.5525/gla.researchdata.716). It can be accessed through a [Python API.](https://github.com/berndporr/ECG-GUDB).
