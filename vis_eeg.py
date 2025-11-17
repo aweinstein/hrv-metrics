@@ -13,18 +13,20 @@ from jf.sensitivity_analysis import evaluate as sens
 save_path = Path(__file__).resolve().parent /  'results'
 FS = 250
 
-def plot_single_case(subject, experiment, setup, methods):
-    detectors = Detectors(FS)
-    detectors_d = {
-        'pan_tompkins': detectors.pan_tompkins_detector,
-        'two_average': detectors.two_average_detector,
-        'swt': detectors.swt_detector,
-        'christov': detectors.christov_detector,
-        'hamilton': detectors.hamilton_detector,
-        'matched_filter': detectors.matched_filter_detector,
-        'engzee': detectors.engzee_detector,
-        'wqrs': detectors.wqrs_detector
-    }
+detectors = Detectors(FS)
+detectors_d = {
+    'pan_tompkins': detectors.pan_tompkins_detector,
+    'two_average': detectors.two_average_detector,
+    'swt': detectors.swt_detector,
+    'christov': detectors.christov_detector,
+    'hamilton': detectors.hamilton_detector,
+    'matched_filter': detectors.matched_filter_detector,
+    'engzee': detectors.engzee_detector,
+    'wqrs': detectors.wqrs_detector
+}
+
+
+def load_data(subject, experiment, setup):
 
     # methods = detectors.get_detector_list()
     ecg = GUDb(subject, experiment)
@@ -41,7 +43,12 @@ def plot_single_case(subject, experiment, setup, methods):
         print(f'Error: Unkwnon setup {setup}')
 
     time = ecg.t
+    return (time, data, anno_exists, annotated_peaks)
 
+
+def plot_single_case(subject, experiment, setup, methods):
+    time, data, anno_exists, annotated_peaks = load_data(subject, experiment,
+                                                         setup)
     plt.close('all')
     _, ax = plt.subplots(figsize=(6, 4))
     ax.plot(time, data, color='black', lw=0.5, label='ECG')
