@@ -24,8 +24,10 @@ ba_plot <- function(x, y, bias, loa_upper, loa_lower, hrv, detector) {
     geom_hline(yintercept = loa_lower, linetype = "dashed") +
     labs(x = xlab, y = ylab, title = title) +
     theme_light() +
-    theme(plot.title = element_text(hjust = 0.5, size = 10),
-          axis.title = element_text(size = 10))
+    theme(plot.title = element_text(hjust = 0.5, size = 14),
+          axis.title = element_text(size = 14),
+          axis.text.x = element_text(size = 12),
+          axis.text.y = element_text(size = 12))
   
   return(p)
 }
@@ -77,7 +79,8 @@ make_ba_plots <- function(fn_data, fn_ccc,
         plot_annotation(title = title) &
         theme(plot.title = element_text(hjust = 0.5))
        
-      fn = sprintf("../figures/bland_altman/bland_altman_%s_%s_%s.pdf", setup, 
+      fn = sprintf("../figures/bland_altman/bland_altman_%s_%s_%s.pdf", 
+                   gsub(" ", "_", setup), 
                    experiment_sel, 
                    strsplit(hrv_metric, "_")[[1]][2])
       ggsave(
