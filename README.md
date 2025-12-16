@@ -36,6 +36,7 @@ The following is a description of all the scripts in the repository:
 - ```utils.py```: Utility functions.
 - ```vis_eeg.py```: Functions to visualize the ECG and the annotations.
 - ```determine_ecg_durations.py```: Determine the duration of all the ECGs.
+- ```R/ccc.R```: Compute CCC and make Bland-Altman plots.
 
 
 ## Databases
