@@ -7,6 +7,7 @@ https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 from utils import save_figs_as_pdf
 
 
@@ -108,7 +109,8 @@ def make_all_plots():
     save_figs_as_pdf(figs, 'figures/ccc_barplots.pdf')
 
 
-def make_paper_plot():
+def make_paper_plot_v1():
+    """Make figure for version 1 of the paper."""
     fn = 'datahrv/ccc_chest_strap_df.csv'
     df = pd.read_csv(fn)
     plt.close('all')
@@ -128,6 +130,49 @@ def make_paper_plot():
     legend_panel.legend(handles=axs[0].get_legend_handles_labels()[0],
                        labels=axs[0].get_legend_handles_labels()[1],
                         loc="center", ncols=len(methods)//2)
+    fn = 'figures/ccc_barplot.pdf'
+    plt.savefig(fn)
+    print('Figure saved as', fn)
+    plt.show()
+
+
+def make_paper_plot():
+    """Make figure for version 2 of the paper."""
+
+    mpl.rcParams.update({
+        'xtick.labelsize': 19,
+        'ytick.labelsize': 15,
+        'axes.labelsize': 15,
+        'axes.titlesize': 19,
+        'legend.fontsize': 18
+    })
+    fn = 'datahrv/ccc_chest_strap_df.csv'
+    df = pd.read_csv(fn)
+    plt.close('all')
+    _, axd = plt.subplot_mosaic([['a', 'b', 'l'],
+                                 ['c', 'd', 'l'],
+                                 ['e', 'f', 'l']],
+                                layout='constrained', width_ratios=[1, 1, 0.2],
+                                figsize=(19.2, 10.9))
+    methods = ['Elgendi_et_al', 'Matched_filter', 'Wavelet_transform',
+               'Christov', 'Hamilton', 'Pan_Tompkins', 'WQRS']
+    experiments = ['sitting', 'maths', 'walking', 'handbk', 'jogging']
+
+    metrics = ['HRV_MeanNN', 'HRV_TINN', 'HRV_LF', 'HRV_HF', 'HRV_SD2',
+               'HRV_SD1SD2']
+    axs = np.array([axd['a'], axd['b'], axd['c'], axd['d'], axd['e'],
+                    axd['f']])
+    _, _ = make_barplot(df, methods, experiments, axs, metrics, ytitle=1)
+
+    axd['a'].set_ylabel('CCC')
+    axd['c'].set_ylabel('CCC')
+    axd['e'].set_ylabel('CCC')
+
+    legend_panel = axd['l']
+    legend_panel.axis('off')
+    legend_panel.legend(handles=axs[0].get_legend_handles_labels()[0],
+                       labels=axs[0].get_legend_handles_labels()[1],
+                        loc="center", ncols=1, fontsize=14)
     fn = 'figures/ccc_barplot.pdf'
     plt.savefig(fn)
     print('Figure saved as', fn)
