@@ -1,5 +1,5 @@
 # HRV-paper
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15213192.svg)](https://doi.org/10.5281/zenodo.15213192)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17990627.svg)](https://doi.org/10.5281/zenodo.17990627)
 
 This is the repository for the paper "Effects of Detection Algorithms of the Electrocardiograms R wave in Heart Rate Variability Metrics." It contains all the necessary code to reproduce the paper's results.
 
@@ -25,10 +25,10 @@ The following is a description of all the scripts in the repository:
 - ```ccc_barplot.py```: Makes CCC plots.
 - ```check_annotation.py```: Print subject, setup, and condition for which there are no annotations.
 - ```compute_hrv.py```:  Compute HRV for all subjects, conditions, methods, and setups.
-- ```export_HRV.py```: Exports a valid subset of HRV metrics. It also shows which rows in the dataframe contains null values.
-- ```find_failed_detectors.py```: Finds detectors that fails to detect 10 or more R peaks.
+- ```export_HRV.py```: Exports a valid subset of HRV metrics. It also shows which rows in the dataframe contain null values.
+- ```find_failed_detectors.py```: Finds detectors that fail to detect 10 or more R peaks.
 - ```interval_tachogram.py```: Plots histogram of RR intervals using np.diff
-- ```jogging_example.py```: Plots an example of the ECGs for Einthoven and the Chest Strap setup to demonstrate the difference of noise level between the setups.
+- ```jogging_example.py```: Plots an example of the ECGs for Einthoven and the Chest Strap setup to demonstrate the difference in noise level between the setups.
 - ```mregression.py```: Makes multiple regression plots.
 - ```neurokit_vs_Porr.py```: Compare Porr, Neurokit, and Neurokit with clean data.
 - ```plot_all_ecgs.py```: Plot the ECGs for all subjects, setups, and conditions.
